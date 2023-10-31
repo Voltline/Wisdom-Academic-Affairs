@@ -16,7 +16,8 @@ DatabaseHandler::DatabaseHandler()
     db.setUserName(username);
     db.setPassword(password);
 
-    if (!db.open()) {
+    if (!db.open())
+    {
         throw DatabaseException::ConnectionException{"ConnectionError : Database Connection Failed!"};
     }
 }
@@ -25,7 +26,8 @@ DatabaseHandler::DatabaseHandler()
 DatabaseHandler::DatabaseHandler(const DatabaseHandler& db_handler)
     : db(db_handler.db)
 {
-    if (!db.open()) {
+    if (!db.open())
+    {
         throw DatabaseException::ConnectionException{"ConnectionError : Database Connection Failed!"};
     }
 }

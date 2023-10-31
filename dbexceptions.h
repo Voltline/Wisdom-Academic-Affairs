@@ -21,7 +21,7 @@ namespace DatabaseException
     {
         ConnectionException(const char* err = "Default ConnectionException")
             : DatabaseException(err) {}
-        ~ConnectionException() = default;
+        virtual ~ConnectionException() = default;
 
         virtual const char* what() const throw()
         {
