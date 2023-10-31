@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "dbhandler.h"
 
 #include <QApplication>
 #include <QLocale>
@@ -23,6 +24,8 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     qDebug() << "Test";
+    DatabaseHandler db;
+    qDebug() << db.database_name;
     std::cout << "Test!!" << std::endl;
     return a.exec();
 }
