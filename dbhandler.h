@@ -14,9 +14,12 @@ public:
     const static int port;
 private:
     QSqlDatabase db;
+    bool is_open;
 public:
     DatabaseHandler();
     DatabaseHandler(const DatabaseHandler& db_handler);
     DatabaseHandler(DatabaseHandler&& db_handler) noexcept;
     ~DatabaseHandler();
+
+    QStringList get_tables() const;
 };

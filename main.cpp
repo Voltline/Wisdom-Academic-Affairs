@@ -26,6 +26,11 @@ int main(int argc, char *argv[])
     qDebug() << "Test";
     DatabaseHandler db;
     qDebug() << db.database_name;
+    auto list{ db.get_tables() };
+    for (const auto& s : list)
+    {
+        qDebug() << s;
+    }
     std::cout << "Test!!" << std::endl;
     return a.exec();
 }

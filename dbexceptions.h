@@ -28,4 +28,16 @@ namespace DatabaseException
             return exception_text;
         }
     };
+
+    struct QueryException : public DatabaseException
+    {
+        QueryException(const char* err = "Default QueryException")
+            : DatabaseException(err) {}
+        virtual ~QueryException() = default;
+
+        virtual const char* what() const throw()
+        {
+            return exception_text;
+        }
+    };
 }
