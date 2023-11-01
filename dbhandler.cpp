@@ -1,5 +1,6 @@
 #include "dbhandler.h"
 #include "dbexceptions.h"
+#include <QDebug>
 
 const QString DatabaseHandler::database_name = "Lighthouse-Server";
 const QString DatabaseHandler::hostname = "124.223.215.89";
@@ -18,6 +19,7 @@ DatabaseHandler::DatabaseHandler()
 
     if (!db.open())
     {
+        qDebug() << db.lastError();
         throw DatabaseException::ConnectionException{"ConnectionError : Database Connection Failed!"};
     }
 }
