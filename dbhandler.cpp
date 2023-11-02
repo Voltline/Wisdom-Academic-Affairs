@@ -9,41 +9,42 @@ const QString DatabaseHandler::password = "";
 const int DatabaseHandler::port = 10080;
 
 DatabaseHandler::DatabaseHandler()
-    : db(QSqlDatabase::addDatabase("QODBC"))
+    : _db(QSqlDatabase::addDatabase("QODBC")), _query(_db)
 {
-    db.setHostName(hostname);
-    db.setPort(port);
-    db.setDatabaseName(database_name);
-    db.setUserName(username);
-    db.setPassword(password);
+    _db.setHostName(hostname);
+    _db.setPort(port);
+    _db.setDatabaseName(database_name);
+    _db.setUserName(username);
+    _db.setPassword(password);
 
-    if (!db.open())
+    if (!_db.open())
     {
-        qDebug() << db.lastError();
-        throw DatabaseException::ConnectionException{"ConnectionError : Database Connection Failed!"};
+        qDebug() << _db.lastError();
         is_open = false;
+        throw DatabaseException::ConnectionException{"ConnectionError : Database Connection Failed!"};
     }
     else is_open = true;
 }
 
 
 DatabaseHandler::DatabaseHandler(const DatabaseHandler& db_handler)
-    : db(db_handler.db)
+    : _db(db_handler._db), _query(_db)
 {
-    if (!db.open())
+    if (!_db.open())
     {
-        throw DatabaseException::ConnectionException{"ConnectionError : Database Connection Failed!"};
+        qDebug() << _db.lastError();
         is_open = false;
+        throw DatabaseException::ConnectionException{"ConnectionError : Database Connection Failed!"};
     }
     else is_open = true;
 }
 
 DatabaseHandler::DatabaseHandler(DatabaseHandler&& db_handler) noexcept
-    : db(std::move(db_handler.db)), is_open(db_handler.is_open) {}
+    : _db(std::move(db_handler._db)), _query(std::move(db_handler._query)), is_open(db_handler.is_open) {}
 
 DatabaseHandler::~DatabaseHandler()
 {
-    db.close();
+    _db.close();
     is_open = false;
 }
 
@@ -53,6 +54,26 @@ QStringList DatabaseHandler::get_tables() const
     {
         throw DatabaseException::QueryException{"QueryError : Connection has not been established!"};
     }
-    return db.tables();
+    return _db.tables();
 }
 
+bool DatabaseHandler::query(const QString& sql_statement)
+{
+    if (is_open)
+    {
+        _db.transaction();
+        bool query_ans{ _query.exec(sql_statement) };
+        _db.commit();
+        return query_ans;
+    }
+    else throw DatabaseException::QueryException{"QueryError : Connection has not been established!"};
+}
+
+std::tuple<QSqlRecord, QSqlQuery> DatabaseHandler::record()
+{
+    if (is_open)
+    {
+        return std::tuple<QSqlRecord, QSqlQuery>{_query.record(), _query};
+    }
+    else throw DatabaseException::QueryException{"QueryError : Connection has not been established!"};
+}

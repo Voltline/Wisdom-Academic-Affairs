@@ -23,7 +23,9 @@ int main(int argc, char *argv[])
     //test
     MainWindow w;
     w.show();
-    qDebug() << "Test";
+    qDebug() << "Database Test";
+
+
     DatabaseHandler db;
     qDebug() << db.database_name;
     auto list{ db.get_tables() };
@@ -31,6 +33,15 @@ int main(int argc, char *argv[])
     {
         qDebug() << s;
     }
+    db.query(QString("select * from takes limit 5"));
+    auto [rec, query] = db.record();
+    int nameCol{ rec.indexOf("year") };
+    while (query.next())
+    {
+        qDebug() << typeid(query.value(nameCol)).name() << query.value(nameCol).toString();
+    }
+
+
     std::cout << "Test!!" << std::endl;
     return a.exec();
 }
