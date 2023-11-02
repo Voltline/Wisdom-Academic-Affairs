@@ -9,7 +9,8 @@ const QString DatabaseHandler::password = "";
 const int DatabaseHandler::port = 10080;
 
 DatabaseHandler::DatabaseHandler()
-    : _db(QSqlDatabase::addDatabase("QODBC")), _query(_db)
+    : _db(QSqlDatabase::addDatabase("QODBC"))
+    , _query(_db)
 {
     _db.setHostName(hostname);
     _db.setPort(port);
@@ -28,7 +29,8 @@ DatabaseHandler::DatabaseHandler()
 
 
 DatabaseHandler::DatabaseHandler(const DatabaseHandler& db_handler)
-    : _db(db_handler._db), _query(_db)
+    : _db(db_handler._db)
+    , _query(_db)
 {
     if (!_db.open())
     {
@@ -40,7 +42,9 @@ DatabaseHandler::DatabaseHandler(const DatabaseHandler& db_handler)
 }
 
 DatabaseHandler::DatabaseHandler(DatabaseHandler&& db_handler) noexcept
-    : _db(std::move(db_handler._db)), _query(std::move(db_handler._query)), is_open(db_handler.is_open) {}
+    : _db(std::move(db_handler._db))
+    , _query(std::move(db_handler._query))
+    , is_open(db_handler.is_open) {}
 
 DatabaseHandler::~DatabaseHandler()
 {
@@ -76,4 +80,80 @@ std::tuple<QSqlRecord, QSqlQuery> DatabaseHandler::record()
         return std::tuple<QSqlRecord, QSqlQuery>{_query.record(), _query};
     }
     else throw DatabaseException::QueryException{"QueryError : Connection has not been established!"};
+}
+
+const QSqlError DatabaseHandler::last_error() const
+{
+    return _query.lastError();
+}
+
+QMap<QString, QVariant> DatabaseHandler::bound_values() const
+{
+    if (last_error() == QSqlError() && _query.isSelect())
+    {
+        return _query.boundValues();
+    }
+    else
+    {
+        if (!_query.isSelect())
+            throw DatabaseException::HandlerException{"Handler Exception : Last SQL statement is not select!"};
+        else
+            throw DatabaseException::QueryException{"Query Exception : Last select query has syntax error!"};
+    }
+}
+
+std::vector<QString> DatabaseHandler::fields_name() const
+{
+    if (is_open)
+    {
+        if (_query.isSelect() && last_error() == QSqlError())
+        {
+            std::vector<QString> ans;
+            auto rec{ _query.record() };
+            int _size{ rec.count() };
+            for (int i = 0; i < _size; i++)
+            {
+                ans.push_back(rec.fieldName(i));
+            }
+            return ans;
+        }
+        else
+        {
+            if (!_query.isSelect())
+                throw DatabaseException::HandlerException{"Handler Exception : Last SQL statement is not select!"};
+            else
+                throw DatabaseException::QueryException{"Query Exception : Last select query has syntax error!"};
+        }
+    }
+    return std::vector<QString>{};
+}
+
+std::vector<QVariantList> DatabaseHandler::get_select_results()
+{
+    if (is_open)
+    {
+        if (_query.isSelect() && last_error() == QSqlError())
+        {
+            std::vector<QVariantList> ans;
+            std::vector<QString> fields{ fields_name() };
+            while (_query.next())
+            {
+                QVariantList data_tuple{};
+                for (const auto& s : fields)
+                {
+                    data_tuple.append(_query.value(s));
+                }
+                ans.push_back(data_tuple);
+            }
+            return ans;
+        }
+        else
+        {
+            if (!_query.isSelect())
+                throw DatabaseException::HandlerException{"Handler Exception : Last SQL statement is not select!"};
+            else
+                throw DatabaseException::QueryException{"Query Exception : Last select query has syntax error!"};
+        }
+    }
+    return std::vector<QVariantList>{};
 }

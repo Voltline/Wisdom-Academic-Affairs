@@ -34,14 +34,22 @@ int main(int argc, char *argv[])
         qDebug() << s;
     }
     db.query(QString("select * from takes limit 5"));
-    auto [rec, query] = db.record();
-    int nameCol{ rec.indexOf("year") };
-    while (query.next())
+    auto fields_name{ db.fields_name() };
+    for (const auto& s : fields_name)
     {
-        qDebug() << typeid(query.value(nameCol)).name() << query.value(nameCol).toString();
+        std::cout << s.toStdString() << "\t";
     }
-
-
+    std::cout << std::endl;
+    auto ans{ db.get_select_results() };
+    for (const auto& l : ans)
+    {
+        for (const auto& v : l)
+        {
+            std::cout << v.toString().toStdString() << "\t";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
     std::cout << "Test!!" << std::endl;
     return a.exec();
 }

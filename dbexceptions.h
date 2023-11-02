@@ -42,4 +42,16 @@ namespace DatabaseException
             return exception_text;
         }
     };
+
+    struct HandlerException : public DatabaseException
+    {
+        HandlerException(const char* err = "Default HandlerException")
+            : DatabaseException(err) {}
+        virtual ~HandlerException() = default;
+
+        virtual const char* what() const throw()
+        {
+            return exception_text;
+        }
+    };
 }

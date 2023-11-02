@@ -3,8 +3,11 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
-#include <tuple>
 #include <QSqlRecord>
+#include <QVariantList>
+#include <QVariant>
+#include <tuple>
+#include <vector>
 
 class DatabaseHandler
 {
@@ -27,4 +30,8 @@ public:
     QStringList get_tables() const;
     bool query(const QString& sql_statement);
     std::tuple<QSqlRecord, QSqlQuery> record();
+    const QSqlError last_error() const;
+    QMap<QString, QVariant> bound_values() const;
+    std::vector<QString> fields_name() const;
+    std::vector<QVariantList> get_select_results();
 };
