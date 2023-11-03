@@ -61,7 +61,32 @@ QStringList DatabaseHandler::get_tables() const
     return _db.tables();
 }
 
-bool DatabaseHandler::query(const QString& sql_statement)
+bool DatabaseHandler::prepare(const QString& sql_statement)
+{
+    if (is_open)
+    {
+        auto prepare_ans{ _query.prepare(sql_statement) };
+        if (prepare_ans)
+        {
+            return prepare_ans;
+        }
+        else
+            throw DatabaseException::QueryException{"QueryError : The prepared SQL statement is illegel!"};
+    }
+    else throw DatabaseException::QueryException{"QueryError : Connection has not been established!"};
+}
+
+void DatabaseHandler::add_bind_value(const QVariant& val)
+{
+    _query.addBindValue(val);
+}
+
+void DatabaseHandler::bind_value(int place, const QVariant& val)
+{
+    _query.bindValue(place, val);
+}
+
+bool DatabaseHandler::exec(const QString& sql_statement)
 {
     if (is_open)
     {
@@ -71,6 +96,16 @@ bool DatabaseHandler::query(const QString& sql_statement)
         return query_ans;
     }
     else throw DatabaseException::QueryException{"QueryError : Connection has not been established!"};
+}
+
+bool DatabaseHandler::exec()
+{
+    auto ans{ _query.exec() };
+    if (ans)
+    {
+        return ans;
+    }
+    else throw DatabaseException::QueryException{"QueryException : SQL statement haven't been prepared or Bind values error!"};
 }
 
 std::tuple<QSqlRecord, QSqlQuery> DatabaseHandler::record()
@@ -119,10 +154,7 @@ std::vector<QString> DatabaseHandler::fields_name() const
         }
         else
         {
-            if (!_query.isSelect())
-                throw DatabaseException::HandlerException{"Handler Exception : Last SQL statement is not select!"};
-            else
-                throw DatabaseException::QueryException{"Query Exception : Last select query has syntax error!"};
+            throw DatabaseException::HandlerException{"Handler Exception : Cannot get fields name from non-select statement!"};
         }
     }
     return std::vector<QString>{};

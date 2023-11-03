@@ -28,7 +28,11 @@ public:
     ~DatabaseHandler();
 
     QStringList get_tables() const;
-    bool query(const QString& sql_statement);
+    bool prepare(const QString& sql_statement);
+    void add_bind_value(const QVariant& val);
+    void bind_value(int place, const QVariant& val);
+    bool exec(const QString& sql_statement);
+    bool exec();
     std::tuple<QSqlRecord, QSqlQuery> record();
     const QSqlError last_error() const;
     QMap<QString, QVariant> bound_values() const;

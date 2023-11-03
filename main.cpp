@@ -33,7 +33,20 @@ int main(int argc, char *argv[])
     {
         qDebug() << s;
     }
-    db.query(QString("select * from takes limit 5"));
+
+    /*
+    db.prepare(QString("insert into takes values(?, ?, ?, ?, ?, ?)"));
+    db.add_bind_value("43460");
+    db.add_bind_value("408");
+    db.add_bind_value("2");
+    db.add_bind_value("Fall");
+    db.add_bind_value(2023.0);
+    db.add_bind_value("A");
+    db.exec();
+    */
+
+    db.exec("select * from takes where id = '43460'");
+    qDebug() << db.last_error();
     auto fields_name{ db.fields_name() };
     for (const auto& s : fields_name)
     {
