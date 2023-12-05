@@ -10,12 +10,15 @@ CONFIG += c++17
 
 SOURCES += \
     dbhandler.cpp \
+    fenwick_tree.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    sov1_topsort.cpp
 
 HEADERS += \
     dbexceptions.h \
     dbhandler.h \
+    fenwick_tree.h \
     mainwindow.h
 
 FORMS += \
