@@ -3,9 +3,9 @@
 using namespace std;
 namespace TOP
 {
-const int MAXC = 14 * 7 + 10;//一天14节 上午五节下午五节晚上四节 7天 依次给一个编号
-const int MAXN = 1e3+10;//课程数量
-const int MAXM = MAXN * MAXN;//最差情况：建一个完全图
+constexpr int MAXC = 14 * 7 + 10;//一天14节 上午五节下午五节晚上四节 7天 依次给一个编号
+constexpr int MAXN = 1e3+10;//课程数量
+constexpr int MAXM = MAXN * MAXN;//最差情况：建一个完全图
 int head[MAXN], ver[MAXM], nxt[MAXM], edge[MAXM], tot;
 int in[MAXN], out[MAXN];
 int n;
