@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
     }
     std::cout << std::endl;
     ClassInfo cp1{ "COMS0031131051", "03", "Database System Principle and Practice",
-                   "Dandan Zhu", "Computer Science and Technology",
+                   "Dandan Zhu", "Computer Science and Technology", "Fall",
                    Mon, 4.0, 6, 5, std::vector<QString>{"COMS0031121009", "COMS0031131990"} };
     std::cout << cp1 << std::endl;
     return a.exec();
