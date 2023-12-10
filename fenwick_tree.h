@@ -1,5 +1,4 @@
-#ifndef FENWICK_TREE_H
-#define FENWICK_TREE_H
+#pragma once
 #include <vector>
 using std::vector;
 class Fenwick_Tree
@@ -15,4 +14,3 @@ public:
     int query(int x, int y);
 };
 
-#endif // FENWICK_TREE_H

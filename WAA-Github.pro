@@ -16,6 +16,7 @@ SOURCES += \
     sov1_topsort.cpp
 
 HEADERS += \
+    classinfo.h \
     dbexceptions.h \
     dbhandler.h \
     fenwick_tree.h \
