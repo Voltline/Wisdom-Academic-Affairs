@@ -1,14 +1,9 @@
-#pragma once
+﻿#pragma once
 #include <iostream>
 #include <QString>
-#include <QDebug>
 #include <vector>
+#include <QDebug>
 using std::vector;
-
-enum week
-{
-    Mon, Tue, Wed, Thu, Fri, Sat, Sun
-};
 
 constexpr const char* weeks[]{"Monday", "Tuesday", "Wednesday","Thursday", "Friday", "Saturday", "Sunday"};
 
@@ -22,7 +17,7 @@ private:
     QString department;
     QString semester;
     QString category;
-    week day;
+    QString day;
     double credit;
     int beg;
     int last;
@@ -32,7 +27,7 @@ private:
 public:
     ClassInfo() = delete;
     ClassInfo(const QString& cid, const QString& cspid, const QString& cname, const QString& t,
-              const QString& dept, const QString& seme, const QString& cate, const week& w,
+              const QString& dept, const QString& seme, const QString& cate, const QString& w,
               double c, int b, int l, int bw, int lw, const vector<QString>& p)
         : course_basic_ID(cid), course_sp_ID(cspid), course_name(cname)
         , teacher(t), department(dept), semester(seme), category(cate)
@@ -43,32 +38,23 @@ public:
         , credit(cp.credit), beg(cp.beg), last(cp.last), beg_week(cp.beg_week), last_week(cp.last_week), prereq(cp.prereq) {}
     ~ClassInfo() = default;
 
-    friend std::ostream& operator<<(std::ostream& out, const ClassInfo& cp)
+    void display() const
     {
-        out << "CourseID: " << cp.course_basic_ID.toStdString() 
-            << "." << cp.course_sp_ID.toStdString()
-            << "\nCourseName: " << cp.course_name.toStdString()
-            << "\nTeacher: " << cp.teacher.toStdString()
-            << "\nDepartment: " << cp.department.toStdString()
-            << "\nSemester: " << cp.semester.toStdString()
-            << "\nCategory: " << cp.category.toStdString()
-            << "\nCredits: " << cp.credit
-            << "\nDay: " << weeks[cp.day]
-            << "\nPeriod:[";
-        for (int i = 0; i < cp.last; i++)
-        {
-            out << "," + !i << cp.beg + i;
+        qDebug() << "CourseID: " << course_basic_ID + "." + course_sp_ID
+            << "\nCourseName: " << course_name
+            << "\nTeacher: " << teacher
+            << "\nDepartment: " << department
+            << "\nSemester: " << semester
+            << "\nCategory: " << category
+            << "\nCredits: " << credit
+            << "\nDay: " << day
+            << "\nPeriod: " << beg << "~" << beg + last - 1
+            << "\nWeeks: " << beg_week << "~" << beg_week + last_week - 1
+            << "\nPrereq:\n[";
+
+        for (int i = 0; i < prereq.size(); i++) {
+            qDebug() <<  prereq[i];
         }
-        out << "]\nWeeks:[";
-        for (int i = 0; i < cp.last_week; i++)
-        {
-            out << "," + !i << cp.beg_week + i;
-        }
-        out << "]\nPrereq:[";
-        for (int i = 0; i < cp.prereq.size(); i++) {
-            out << "," + !i << cp.prereq[i].toStdString();
-        }
-        out << "]\n";
-        return out;
+        qDebug() << "]";
     }
 };
