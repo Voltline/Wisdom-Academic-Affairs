@@ -34,49 +34,7 @@ struct node
     int turn;
     int score;
 }classes[MAXN];
-void topsort()
-{
-    deque<int> que;
-    for(int i = 1; i <= n; ++i)
-    {
-        if(in[i] == 0)
-            que.push_back(i);
-    }
-    int turn = 0;
-    while(que.size())
-    {
-        ++turn;
-        Fenwick_Tree tree(MAXC);
-        vector<int> vec;
-        while(que.size())
-        {
-            vec.push_back(que.front());
-            que.pop_front();
-        }
-        sort(vec.begin(), vec.end(),[](int x, int y){
-            return out[x] > out[y];
-        });//目前先按照最少影响去拿
-        for(int x : vec)
-        {
-            if(tree.query(classes[x].st.to_id(), classes[x].ed.to_id()) >= 0)//课程冲突
-            {
-                que.push_front(x);
-                continue;
-            }
-            tree.add(classes[x].st.to_id(), classes[x].ed.to_id());
-            classes[x].turn = turn;
-            for(int i = head[x]; i; i = nxt[i])
-            {
-                int y = ver[i];
-                --in[y];
-                if(in[y] == 0)
-                {
-                    que.push_back(y);
-                }
-            }
-        }
-    }
-}
+ 
 void sov()
 {
 
