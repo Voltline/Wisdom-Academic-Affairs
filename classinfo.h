@@ -5,11 +5,22 @@
 #include <QDebug>
 using std::vector;
 
-constexpr const char* weeks[]{"Monday", "Tuesday", "Wednesday","Thursday", "Friday", "Saturday", "Sunday"};
+class ClassPeriod
+{
+public:
+    int day;
+    int beg;
+    int last;
+public:
+    bool operator==(const ClassPeriod& cp) const
+    {
+        return (day == cp.day) && (beg == cp.beg) && (last == cp.last);
+    }
+};
 
 class ClassInfo
 {
-private:
+public:
     QString course_basic_ID;
     QString course_sp_ID;
     QString course_name;
@@ -17,25 +28,25 @@ private:
     QString department;
     QString semester;
     QString category;
-    QString day;
+    vector<ClassPeriod> times;
     double credit;
-    int beg;
-    int last;
     int beg_week;
     int last_week;
+    int limits;
     vector<QString> prereq;
 public:
     ClassInfo() = delete;
     ClassInfo(const QString& cid, const QString& cspid, const QString& cname, const QString& t,
-              const QString& dept, const QString& seme, const QString& cate, const QString& w,
-              double c, int b, int l, int bw, int lw, const vector<QString>& p)
+              const QString& dept, const QString& seme, const QString& cate, const vector<ClassPeriod>& tms,
+              double c, int bw, int lw, int lm, const vector<QString>& p)
         : course_basic_ID(cid), course_sp_ID(cspid), course_name(cname)
         , teacher(t), department(dept), semester(seme), category(cate)
-        , day(w), credit(c), beg(b), last(l), beg_week(bw), last_week(lw), prereq(p) {}
+        , times(tms), credit(c), beg_week(bw), last_week(lw), limits(lm), prereq(p) {}
     ClassInfo(const ClassInfo& cp)
         : course_basic_ID(cp.course_basic_ID), course_sp_ID(cp.course_sp_ID), course_name(cp.course_name)
-        , teacher(cp.teacher), department(cp.department), semester(cp.semester), category(cp.category), day(cp.day)
-        , credit(cp.credit), beg(cp.beg), last(cp.last), beg_week(cp.beg_week), last_week(cp.last_week), prereq(cp.prereq) {}
+        , teacher(cp.teacher), department(cp.department), semester(cp.semester), category(cp.category)
+        , times(cp.times), credit(cp.credit), beg_week(cp.beg_week), last_week(cp.last_week), limits(cp.limits)
+        , prereq(cp.prereq) {}
     ~ClassInfo() = default;
 
     void display() const
@@ -47,13 +58,18 @@ public:
             << "\nSemester: " << semester
             << "\nCategory: " << category
             << "\nCredits: " << credit
-            << "\nDay: " << day
-            << "\nPeriod: " << beg << "~" << beg + last - 1
-            << "\nWeeks: " << beg_week << "~" << beg_week + last_week - 1
-            << "\nPrereq:\n[";
+            << "\nWeeks: " << beg_week << " " << beg_week + last_week - 1
+            << "\nLimits: " << limits;
 
-        for (int i = 0; i < prereq.size(); i++) {
-            qDebug() <<  prereq[i];
+        for (const auto& cp : times)
+        {
+            qDebug() << cp.day << " " << cp.beg << " " << cp.beg + cp.last-1;
+        }
+        qDebug() << "Prereq:\n[";
+
+        for (int i = 0; i < prereq.size(); i++)
+        {
+            qDebug() << " " << prereq[i];
         }
         qDebug() << "]";
     }

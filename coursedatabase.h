@@ -15,5 +15,6 @@ public:
     ~CourseDatabase() = default;
 
     vector<ClassInfo> get_all_class_info();
-    ClassInfo get_one_class_info(const QString& course_basic_ID);
+    vector<ClassInfo> get_one_class_info(const QString& course_basic_ID);
+    // void get_construct_data();
 };

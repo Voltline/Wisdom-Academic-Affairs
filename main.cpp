@@ -27,10 +27,18 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     CourseDatabase cdb;
+    /*
     auto ans{ cdb.get_all_class_info() };
     for (const auto& l : ans)
     {
         l.display();
     }
+    */
+    auto ans = cdb.get_one_class_info("COMS0031121009");
+    for (const auto& l : ans)
+    {
+        l.display();
+    }
+
     return a.exec();
 }
