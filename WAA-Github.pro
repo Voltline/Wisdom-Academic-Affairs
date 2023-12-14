@@ -21,6 +21,7 @@ SOURCES += \
     teachercourse.cpp
 
 HEADERS += \
+    CourseSystem.h \
     classinfo.h \
     course.h \
     coursedatabase.h \

@@ -10,7 +10,7 @@ private:
     int n;
 public:
     // 构造函数，初始化大小为 n 的 树状数组
-    Fenwick_Tree(int N);
+    Fenwick_Tree(int N=100);
     // 向 树状数组 中添加一个元素，下标为 x，值为 d
     void add(int x, int d);
     // 向 树状数组 中添加一个区间，下标为 x，y，值为 d
