@@ -9,20 +9,28 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    course.cpp \
     coursedatabase.cpp \
+    coursetime.cpp \
     dbhandler.cpp \
     fenwick_tree.cpp \
     main.cpp \
     mainwindow.cpp \
-    sov1_topsort.cpp
+    multicoursetime.cpp \
+    sov1_topsort.cpp \
+    teachercourse.cpp
 
 HEADERS += \
     classinfo.h \
+    course.h \
     coursedatabase.h \
+    coursetime.h \
     dbexceptions.h \
     dbhandler.h \
     fenwick_tree.h \
-    mainwindow.h
+    mainwindow.h \
+    multicoursetime.h \
+    teachercourse.h
 
 FORMS += \
     mainwindow.ui

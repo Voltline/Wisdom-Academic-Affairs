@@ -19,37 +19,37 @@ bool bfs()
 {
     // 初始化距离数组
     memset(d, 0, sizeof(d));
-    // 将队列中的元素全部弹出
+    // 将队列q中的元素全部弹出
     while (q.size())
         q.pop();
-    // 将起点加入队列
+    // 将起点s压入队列q
     q.push(s);
-    // 距离数组中起点的位置置为1
+    // 距离数组d中s的距离设置为1
     d[s] = 1;
-    // 当队列不为空时
+    // 当队列q不为空时，循环
     while (q.size())
     {
-        // 取出队列中的第一个元素
+        // 取出队列q中的第一个元素
         int x = q.front();
-        // 将该元素弹出队列
+        // 将该元素弹出队列q
         q.pop();
-        // 遍历该元素的所有出边
+        // 遍历x的边
         for (int i = head[x]; i; i = nxt[i])
         {
-            // 如果该边存在，并且距离数组中该顶点的位置为0
+            // 如果该边的边权不为0，且距离数组d中该边的距离为0
             if (edge[i] && !d[ver[i]])
             {
-                // 将该顶点加入队列
+                // 将该边的终点压入队列q
                 q.push(ver[i]);
-                // 将该顶点的位置置为该元素的位置加1
+                // 将该边的距离设置为x的距离加1
                 d[ver[i]] = d[x] + 1;
-                // 如果该顶点为终点，返回true
+                // 如果该边的终点是终点t，返回true
                 if (ver[i] == t)
                     return 1;
             }
         }
     }
-    // 如果遍历完所有的边，没有找到终点，返回false
+    // 如果遍历完所有的边，没有找到终点t，返回false
     return 0;
 }
 
@@ -63,15 +63,15 @@ int dinic(int x, int flow)
     // 遍历x的边
     for (int i = head[x]; i && rest; i = nxt[i])
     {
-        // 如果该边的容量大于0，且该边的深度为x的深度加1
+        // 如果该边的容量大于0，且源点为x，汇点为ver[i]
         if (edge[i] && d[ver[i]] == d[x] + 1)
         {
-            // 递归调用dinic函数，获取从该边流过的水量
+            // 调用dinic函数，计算从ver[i]到汇点的最大流
             k = dinic(ver[i], min(rest, edge[i]));
-            // 如果从该边流过的水量为0，则将该边的深度设为0
+            // 如果最大流为0，则将源点d[ver[i]]置为0
             if (!k)
                 d[ver[i]] = 0;
-            // 更新该边的容量
+            // 更新边的容量
             edge[i] -= k;
             edge[i ^ 1] += k;
             // 更新剩余水量
@@ -81,14 +81,8 @@ int dinic(int x, int flow)
     // 返回已经流过的水量
     return flow - rest;
 }
-void luogu()
-{
-}
-
 signed main()
 {
-    // freopen("in.txt", "r", stdin);
-    // freopen("out.txt", "w", stdout);
     cin >> n >> m;
     cin >> s >> t;
     tot = 1;
@@ -105,6 +99,5 @@ signed main()
         while (flow = dinic(s, INF))
             maxflow += flow;
     }
-    cout << maxflow << endl;
     cout << maxflow << endl;
 }
