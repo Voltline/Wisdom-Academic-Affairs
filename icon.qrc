@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/back">
+        <file>hide.png</file>
+        <file>icon.jpg</file>
+        <file>quit.png</file>
+    </qresource>
+</RCC>

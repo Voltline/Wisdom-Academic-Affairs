@@ -40,4 +40,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 INCLUDEPATH += $$PWD/.
 DEPENDPATH += $$PWD/.
 
-DISTFILES +=
+DISTFILES += \
+    icon/hide.png \
+    icon/icon.jpg \
+    icon/quit.png
+
+RESOURCES += \
+    icon.qrc

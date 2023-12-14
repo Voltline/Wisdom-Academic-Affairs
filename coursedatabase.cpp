@@ -30,7 +30,7 @@ vector<ClassInfo> CourseDatabase::get_all_class_info()
     for (const auto& cs : all_courses_ID)
     {
         QString basic_ID = cs[0].toString(), sp_ID = cs[1].toString();
-        sql = "call get_info_from_courses(?, ?);";
+        sql = "call get_info_from_course(?, ?);";
         db.prepare(sql);
         db.add_bind_value(basic_ID);
         db.add_bind_value(sp_ID);
@@ -44,7 +44,7 @@ vector<ClassInfo> CourseDatabase::get_all_class_info()
         double credit{course_info[0][5].toDouble()};
         int beg_w{course_info[0][6].toInt()}, last_w{course_info[0][7].toInt()}, lm{course_info[0][8].toInt()};
         vector<ClassPeriod> cp;
-        sql = "call get_period_from_courses(?, ?);";
+        sql = "call get_period_from_course(?, ?);";
         db.prepare(sql);
         db.add_bind_value(basic_ID);
         db.add_bind_value(sp_ID);
