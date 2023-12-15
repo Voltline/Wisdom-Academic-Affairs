@@ -1,5 +1,6 @@
 #ifndef COURSE_H
 #define COURSE_H
+#include "CourseSystem.h"
 #include "teachercourse.h"
 
 namespace CourseSystem

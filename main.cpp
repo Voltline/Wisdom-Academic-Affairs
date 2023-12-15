@@ -2,14 +2,15 @@
 #include "dbhandler.h"
 #include "classinfo.h"
 #include "coursedatabase.h"
-
+#include "CourseSystem.h"
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
 #include <QDebug>
 #include <iostream>
 #include <QTextStream>
-
+#include "CourseSystem.h"
+using namespace CourseSystem;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -32,6 +33,11 @@ int main(int argc, char *argv[])
 //    {
 //        l.display();
 //    }
+    multiCourseTime t1, t2;
+    t1.push_back(CourseTime(1, 1, 3));
+    t1.push_back(CourseTime(2, 1, 3));
+    t2.push_back(CourseTime(1, 1, 3));
 
+    qDebug() << judge_conflict(t1, t2);
     return a.exec();
 }

@@ -1,7 +1,7 @@
+#pragma once
 #ifndef COURSESYSTEM_COURSETIME_H
 #define COURSESYSTEM_COURSETIME_H
 #include "CourseSystem.h"
-
 namespace CourseSystem {
 
 class CourseTime
@@ -9,6 +9,9 @@ class CourseTime
 public:
     CourseTime()=default;
     CourseTime(int day, int start_class, int end_class);
+    CourseTime(int time_id_1, int time_id_2);
+    CourseTime(const CourseTime &time);
+    CourseTime &operator=(const CourseTime &time);
     const int &get_day() const;
     const int &get_start_class() const;
     const int &get_end_class() const;
