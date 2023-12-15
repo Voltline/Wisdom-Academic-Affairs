@@ -23,12 +23,8 @@ protected:
 
 private slots:
     void on_pushButton_clicked();
-
     void on_QuitButton_clicked();
-
     void on_MinButton_clicked();
-
-    void on_pushButton_2_pressed();
 
 private:
     Ui::MainWindow *ui;

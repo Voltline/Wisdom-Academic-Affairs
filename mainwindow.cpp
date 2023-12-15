@@ -1,11 +1,15 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QGraphicsDropShadowEffect>
+#include <QPainter>
+#include <QPaintEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     setWindowFlags(Qt::FramelessWindowHint);
+    setAttribute(Qt::WA_TranslucentBackground);
     ui->setupUi(this);
 }
 
@@ -62,5 +66,6 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 
 void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 {
+    Q_UNUSED(event);
     mouse_press = false;
 }
