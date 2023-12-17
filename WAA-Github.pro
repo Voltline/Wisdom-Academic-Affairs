@@ -13,13 +13,15 @@ SOURCES += \
     coursedatabase.cpp \
     coursetime.cpp \
     dbhandler.cpp \
+    dinic.cpp \
     fenwick_tree.cpp \
     main.cpp \
     mainwindow.cpp \
     multicoursetime.cpp \
     segmenttree.cpp \
     sov1_topsort.cpp \
-    teachercourse.cpp
+    teachercourse.cpp \
+    topsort.cpp
 
 HEADERS += \
     CourseSystem.h \
@@ -29,11 +31,13 @@ HEADERS += \
     coursetime.h \
     dbexceptions.h \
     dbhandler.h \
+    dinic.h \
     fenwick_tree.h \
     mainwindow.h \
     multicoursetime.h \
     segmenttree.h \
-    teachercourse.h
+    teachercourse.h \
+    topsort.h
 
 FORMS += \
     mainwindow.ui
