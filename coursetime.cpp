@@ -2,6 +2,14 @@
 
 namespace CourseSystem
 {
+    CourseTime::CourseTime(ClassPeriod cp)
+    {
+        this->day = cp.day;
+        this->start_class = cp.beg;
+        this->end_class = cp.last;
+        this->start_class_id = (day - 1) * MAX_CLASS_IN_DAY + start_class;
+        this->end_class_id = (day - 1) * MAX_CLASS_IN_DAY + end_class;
+    }
 
     CourseTime::CourseTime(int day, int start_class, int end_class)
     {

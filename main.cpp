@@ -9,7 +9,6 @@
 #include <QDebug>
 #include <iostream>
 #include <QTextStream>
-#include "CourseSystem.h"
 using namespace CourseSystem;
 int main(int argc, char *argv[])
 {
@@ -36,8 +35,8 @@ int main(int argc, char *argv[])
     multiCourseTime t1, t2;
     t1.push_back(CourseTime(1, 1, 3));
     t1.push_back(CourseTime(2, 1, 3));
-    t2.push_back(CourseTime(1, 1, 3));
+    t2.push_back(CourseTime(2, 2, 5));
 
-    qDebug() << judge_conflict(t1, t2);
+    qDebug() << (t1^t2);
     return a.exec();
 }
