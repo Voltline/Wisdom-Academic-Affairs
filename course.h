@@ -15,6 +15,14 @@ namespace CourseSystem
         Course(ClassInfo cInfo);
         // 插入一个教师上课信息
         Course &push_teacherCourse(const TeacherCourse &teacherCourse);
+        const QString &get_course_basic_ID() const { return course_basic_ID; }
+        const QString &get_course_name() const { return course_name; }
+        const QString &get_department() const { return department; }
+        const QString &get_semester() const { return semester; }
+        const QString &get_category() const { return category; }
+        double get_credit() const { return credit; }
+        const vector<TeacherCourse> &get_teacherCourse() const { return teacherCourses; }
+        const vector<QString> get_prerequisites() const { return prereq; }
 
     private:
         // 课程信息 eg COMS0031121009

@@ -36,6 +36,7 @@ HEADERS += \
     mainwindow.h \
     multicoursetime.h \
     segmenttree.h \
+    stdAddition.h \
     teachercourse.h \
     topsort.h
 
