@@ -17,6 +17,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     multicoursetime.cpp \
+    segmenttree.cpp \
     sov1_topsort.cpp \
     teachercourse.cpp
 
@@ -31,6 +32,7 @@ HEADERS += \
     fenwick_tree.h \
     mainwindow.h \
     multicoursetime.h \
+    segmenttree.h \
     teachercourse.h
 
 FORMS += \
