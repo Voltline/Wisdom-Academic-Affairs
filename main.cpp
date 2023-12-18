@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     qDebug() << (t1^t2);
     */
     //测试数据库
-    auto ans{ cdb.get_all_class_info() };
+    auto ans{ cdb.get_class_from_dept("计算机科学与技术学院") };
     for (const auto& l : ans)
     {
         l.display();

@@ -127,6 +127,60 @@ vector<ClassInfo> CourseDatabase::get_one_class_info(const QString& course_basic
     return ans_set;
 }
 
+vector<ClassInfo> CourseDatabase::get_class_from_dept(const QString& dept)
+{
+    vector<ClassInfo> ans_set;
+    QString sql{ "call get_from_dept(?);" };
+    db.prepare(sql);
+    db.add_bind_value(dept);
+    db.exec();
+    auto all_courses_ID{ db.get_select_results() };
+    for (const auto& cs : all_courses_ID)
+    {
+        QString basic_ID = cs[0].toString(), sp_ID = cs[1].toString();
+        sql = "call get_info_from_course(?, ?);";
+        db.prepare(sql);
+        db.add_bind_value(basic_ID);
+        db.add_bind_value(sp_ID);
+        db.exec();
+        auto course_info{ db.get_select_results() };
+        QString name{course_info[0][0].toString()},
+            teacher{course_info[0][1].toString()},
+            dept{course_info[0][2].toString()},
+            seme{course_info[0][3].toString()},
+            cate{course_info[0][4].toString()};
+        double credit{course_info[0][5].toDouble()};
+        int beg_w{course_info[0][6].toInt()}, last_w{course_info[0][7].toInt()}, lm{course_info[0][8].toInt()};
+        vector<ClassPeriod> cp;
+        sql = "call get_period_from_course(?, ?);";
+        db.prepare(sql);
+        db.add_bind_value(basic_ID);
+        db.add_bind_value(sp_ID);
+        db.exec();
+        auto courses_period_info{ db.get_select_results() };
+        for (const auto& ci : courses_period_info)
+        {
+            cp.push_back(ClassPeriod{
+                          weekday_map(ci[0].toString()),
+                          ci[1].toInt(), ci[2].toInt()});
+        }
+
+        vector<QString> prereq;
+        db.prepare("call get_course_prereq(?);");
+        db.bind_value(0, basic_ID);
+        db.exec();
+        auto pre{ db.get_select_results() };
+        for (const auto& rec : pre) {
+            prereq.push_back(rec[2].toString());
+        }
+
+        ans_set.push_back(ClassInfo{basic_ID, sp_ID, name, teacher,
+                                    dept, seme, cate, cp, credit,
+                                     beg_w, last_w, lm, prereq});
+    }
+    return ans_set;
+}
+
 /*
 void CourseDatabase::get_construct_data()
 {
