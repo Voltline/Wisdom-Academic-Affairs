@@ -3,12 +3,14 @@
 #include "classinfo.h"
 #include "coursedatabase.h"
 #include "CourseSystem.h"
+#include "topsort.h"
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
 #include <QDebug>
 #include <iostream>
 #include <QTextStream>
+using namespace DataStructureAlgorithm;
 using namespace CourseSystem;
 int main(int argc, char *argv[])
 {
@@ -38,7 +40,7 @@ int main(int argc, char *argv[])
     auto ans{ cdb.get_class_from_dept("计算机科学与技术学院") };
     for (const auto& l : ans)
     {
-        l.display();
+//        l.display();
     }
     //测试ClassSystem
     std::map<QString, CourseSystem::Course> courses;
@@ -48,7 +50,25 @@ int main(int argc, char *argv[])
     }
     for(auto [x,y] : courses)
     {
-        y.debug();
+//        y.debug();
+        qDebug() << y.get_course_name();
+    }
+    //测试topsort
+    vector<CourseSystem::Course> vec;
+    for(auto [x,y]: courses)
+    {
+        vec.push_back(y);
+    }
+    auto topans = TopSort(vec).sov();
+    qDebug() << "ans";
+    for(auto x : topans)
+    {
+
+        for(auto y : x)
+        {
+            qDebug() << y.get_course_name();
+        }
+        qDebug() << "\n";
     }
     return a.exec();
 }

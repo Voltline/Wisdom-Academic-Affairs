@@ -21,7 +21,8 @@ SOURCES += \
     segmenttree.cpp \
     sov1_topsort.cpp \
     teachercourse.cpp \
-    topsort.cpp
+    topsort.cpp \
+    trie.cpp
 
 HEADERS += \
     CourseSystem.h \
@@ -38,7 +39,8 @@ HEADERS += \
     segmenttree.h \
     stdAddition.h \
     teachercourse.h \
-    topsort.h
+    topsort.h \
+    trie.h
 
 FORMS += \
     mainwindow.ui
