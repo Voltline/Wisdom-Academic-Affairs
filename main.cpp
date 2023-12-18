@@ -4,6 +4,7 @@
 #include "coursedatabase.h"
 #include "CourseSystem.h"
 #include "topsort.h"
+#include "dinic.h"
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
@@ -37,12 +38,14 @@ int main(int argc, char *argv[])
     qDebug() << (t1^t2);
     */
     //测试数据库
-    auto ans{ cdb.get_class_from_dept("计算机科学与技术学院") };
+//    auto ans{ cdb.get_one_class_info("COMS0031121009") };
+    auto ans{cdb.get_class_from_dept("计算机科学与技术学院")};
     for (const auto& l : ans)
     {
-//        l.display();
+        l.display();
     }
     //测试ClassSystem
+    /*
     std::map<QString, CourseSystem::Course> courses;
     for(auto courseinfo : ans)
     {
@@ -53,7 +56,9 @@ int main(int argc, char *argv[])
 //        y.debug();
         qDebug() << y.get_course_name();
     }
+    */
     //测试topsort
+    /*
     vector<CourseSystem::Course> vec;
     for(auto [x,y]: courses)
     {
@@ -70,5 +75,18 @@ int main(int argc, char *argv[])
         }
         qDebug() << "\n";
     }
+    */
+    //测试dinic
+    std::map<QString, CourseSystem::Course> courses;
+    for(auto courseinfo : ans)
+    {
+        courses[courseinfo.course_basic_ID].push_teacherCourse(courseinfo);
+    }
+    vector<CourseSystem::Course> vec;
+    for(auto [x,y] : courses)
+    {
+        vec.push_back(y);
+    }
+    qDebug() << Dinic(vec).sov();
     return a.exec();
 }

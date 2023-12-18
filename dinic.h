@@ -7,11 +7,13 @@
 #include <unordered_map>
 #include <queue>
 #include <algorithm>
+#include <QDebug>
 using CourseSystem::Course;
 using std::min;
 using std::queue;
 using std::unordered_map;
 using std::vector;
+
 namespace DataStructureAlgorithm
 {
     class Dinic

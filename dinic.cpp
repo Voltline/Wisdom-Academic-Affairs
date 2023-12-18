@@ -5,9 +5,9 @@ namespace DataStructureAlgorithm
     Dinic::Dinic(vector<Course> courses)
     {
         this->courses = courses;
-        n = 1;
+        n = 0;
         m = 0;
-        s = t = 0;
+        s = 1;
         maxn = 1;
         maxm = 0;
         tot = 1;
@@ -21,7 +21,7 @@ namespace DataStructureAlgorithm
         }
         ++maxn;
         maxn = maxn * 2; // 拆点 所以2n
-        t = maxn - 1;
+        t = n+2;
         maxm = maxn * maxn; // 按完全图 计算
         head = vector<int>(maxn);
         ver = vector<int>(maxm);
@@ -31,6 +31,7 @@ namespace DataStructureAlgorithm
     }
     int Dinic::sov()
     {
+        if(courses.empty()) return 0;
         build();
         int flow = 0;
         while(bfs())
@@ -173,6 +174,7 @@ namespace DataStructureAlgorithm
     }
     void Dinic::add(int x, int y, int z)
     {
+        qDebug() << x <<  " " << y << " " << z;
         ver[++tot] = y;
         edge[tot] = z;
         nxt[tot] = head[x];
