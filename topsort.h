@@ -21,7 +21,6 @@ namespace DataStructureAlgorithm
         {
             return out[x] > out[y];
         }
-
         vector<vector<Course>> sov(); // 直接调用返回答案
     private:
         vector<int> head, ver, nxt, in, out;
@@ -40,7 +39,6 @@ namespace DataStructureAlgorithm
             nxt[tot] = head[x];
             head[x] = tot;
         }
-
         void build();   // TODO : 建图
         void topsort(); // TODO: topsort
     };
