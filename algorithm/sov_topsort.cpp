@@ -128,26 +128,25 @@ namespace TOP
             cin >> classes[i].name >> classes[i].score;
             int k;
             cin >> k;
-            for(int j = 1, l, r; j <= k; ++j)
+            for (int j = 1, l, r; j <= k; ++j)
             {
                 int day;
                 cin >> day >> l >> r;
-                classes[i].times.push_back({{day, l}, {day,r}});
+                classes[i].times.push_back({{day, l}, {day, r}});
             }
             classid[classes[i].name] = i;
         }
-        for(int i = 1; i <= m; ++i)
+        for (int i = 1; i <= m; ++i)
         {
             string x, y;
             cin >> x >> y;
             add(classid[x], classid[y]);
         }
         topsort();
-        for(int i = 1; i <= n; ++i)
+        for (int i = 1; i <= n; ++i)
         {
             cerr << classes[i].name << " " << classes[i].score << " " << classes[i].turn << endl;
         }
-        
     }
 }
 /*

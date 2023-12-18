@@ -13,4 +13,10 @@ namespace CourseSystem
     {
         return *times;
     }
+
+    void TeacherCourse::debug()
+    {
+        qDebug() << spid << "\n" << teacher << "\n" << limits;
+        times->debug();
+    }
 }

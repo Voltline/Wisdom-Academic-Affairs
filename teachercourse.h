@@ -3,6 +3,7 @@
 #define TEACHERCOURSE_H
 #include "CourseSystem.h"
 #include <QString>
+#include <QDebug>
 namespace CourseSystem
 {
     class multiCourseTime;
@@ -14,6 +15,7 @@ namespace CourseSystem
         TeacherCourse(QString spid, QString teacher, int limits, multiCourseTime times);
         ~TeacherCourse() = default;
         multiCourseTime &get_times();
+        void debug();
     private:
         // 开课序号
         QString spid;

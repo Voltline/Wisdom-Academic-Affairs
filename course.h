@@ -4,6 +4,7 @@
 #include "classinfo.h"
 #include <vector>
 #include <QString>
+#include <QDebug>
 using std::vector;
 namespace CourseSystem
 {
@@ -15,6 +16,7 @@ namespace CourseSystem
         Course(ClassInfo cInfo);
         // 插入一个教师上课信息
         Course &push_teacherCourse(const TeacherCourse &teacherCourse);
+        Course &push_teacherCourse(ClassInfo cInfo);
         const QString &get_course_basic_ID() const { return course_basic_ID; }
         const QString &get_course_name() const { return course_name; }
         const QString &get_department() const { return department; }
@@ -23,8 +25,9 @@ namespace CourseSystem
         double get_credit() const { return credit; }
         const vector<TeacherCourse> &get_teacherCourse() const { return teacherCourses; }
         const vector<QString> get_prerequisites() const { return prereq; }
-
+        void debug();
     private:
+        void init(ClassInfo cInfo);
         // 课程信息 eg COMS0031121009
         QString course_basic_ID;
         // 课程名

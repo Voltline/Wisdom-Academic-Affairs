@@ -13,6 +13,14 @@ namespace CourseSystem
     {
         course_times.push_back(course_time);
     }
+
+    void multiCourseTime::debug()
+    {
+        {
+            for(auto tm : course_times)
+                tm.debug();
+        }
+    }
     bool judge_conflict(const multiCourseTime &course_time_1, const multiCourseTime &course_time_2)
     {
         SegmentTree tree(MAX_CLASS_ID);

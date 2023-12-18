@@ -3,6 +3,7 @@
 #define COURSESYSTEM_COURSETIME_H
 #include "CourseSystem.h"
 #include "classinfo.h"
+#include <QDebug>
 namespace CourseSystem
 {
     // 课程时间类 仅处理某一个上课时间 提供人id/课时的转换
@@ -31,6 +32,10 @@ namespace CourseSystem
         /// @return 结束课时ID
         const int &get_end_class_id() const;
         friend bool judge_conflict(CourseTime &c1, CourseTime &c2);
+        void debug()
+        {
+            qDebug() << "day:" << day << "start_class:" << start_class << "end_class:" << end_class << "start_class_id:" << start_class_id << "end_class_id:" << end_class_id;
+        }
 
     private:
         int day;                          // 星期几

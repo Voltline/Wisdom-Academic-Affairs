@@ -26,17 +26,29 @@ int main(int argc, char *argv[])
     //test
     MainWindow w;
     w.show();
-//    CourseDatabase cdb;
-//    auto ans{ cdb.get_all_class_info() };
-//    for (const auto& l : ans)
-//    {
-//        l.display();
-//    }
+    CourseDatabase cdb;
+    /*测试 multiCourse的冲突检测 线段树
     multiCourseTime t1, t2;
     t1.push_back(CourseTime(1, 1, 3));
     t1.push_back(CourseTime(2, 1, 3));
     t2.push_back(CourseTime(2, 2, 5));
-
     qDebug() << (t1^t2);
+    */
+    //测试数据库
+    auto ans{ cdb.get_all_class_info() };
+    for (const auto& l : ans)
+    {
+        l.display();
+    }
+    //测试ClassSystem
+    std::map<QString, CourseSystem::Course> courses;
+    for(auto courseinfo : ans)
+    {
+        courses[courseinfo.course_basic_ID].push_teacherCourse(courseinfo);
+    }
+    for(auto [x,y] : courses)
+    {
+        y.debug();
+    }
     return a.exec();
 }

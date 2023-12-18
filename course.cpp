@@ -18,4 +18,33 @@ namespace CourseSystem
         teacherCourses.push_back(teacherCourse);
         return *this;
     }
+
+    void Course::debug()
+    {
+        qDebug() << course_basic_ID << "\n" << course_name << "\n" << department << "\n" << semester << "\n" << category << "\n" << credit;
+        for(auto x : prereq)
+            qDebug() << x << " ";
+        for(auto x : teacherCourses)
+            x.debug();
+    }
+    Course &Course::push_teacherCourse(ClassInfo cInfo)
+    {
+        if(course_basic_ID.isEmpty())
+            init(cInfo);
+        else if(course_basic_ID != cInfo.course_basic_ID)
+            throw QString("insert wrong basic Class");
+        TeacherCourse teacherCourse(cInfo.course_sp_ID, cInfo.teacher, cInfo.limits, multiCourseTime(cInfo.times));
+        teacherCourses.push_back(teacherCourse);
+        return *this;
+    }
+    void Course::init(ClassInfo cInfo)
+    {
+        course_basic_ID = cInfo.course_basic_ID;
+        course_name = cInfo.course_name;
+        department = cInfo.department;
+        semester = cInfo.semester;
+        credit = cInfo.credit;
+        category = cInfo.category;
+        prereq = cInfo.prereq;
+    }
 }
