@@ -1,8 +1,16 @@
 #ifndef DINIC_H
 #define DINIC_H
 #include "CourseSystem.h"
+#include "stdAddition.h"
 #include <vector>
+#include <QString>
+#include <unordered_map>
+#include <queue>
+#include <algorithm>
 using CourseSystem::Course;
+using std::min;
+using std::queue;
+using std::unordered_map;
 using std::vector;
 namespace DataStructureAlgorithm
 {
@@ -11,16 +19,20 @@ namespace DataStructureAlgorithm
     public:
         Dinic(vector<Course> courses);
         int sov();
+
     private:
-        vector<int> head, vec, nxt, edge, d;
+        vector<int> head, ver, nxt, edge, d;
         vector<Course> courses;
+        unordered_map<QString, int> course_id;
         int tot = 1;
         int n, m, s, t;
+        int maxn, maxm;
         int maxflow;
         const static int INF = 0x3f3f3f3f;
         void build();
-        void bfs();
+        bool bfs();
         int dinic(int x, int flow);
+        void add(int x, int y, int z);
     };
 }
 

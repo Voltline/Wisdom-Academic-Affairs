@@ -15,6 +15,7 @@ namespace CourseSystem
         Course() = default;
         Course(ClassInfo cInfo);
         // 插入一个教师上课信息
+        Course &operator=(const Course &teacherCourse);
         Course &push_teacherCourse(const TeacherCourse &teacherCourse);
         Course &push_teacherCourse(ClassInfo cInfo);
         const QString &get_course_basic_ID() const { return course_basic_ID; }
@@ -26,6 +27,7 @@ namespace CourseSystem
         const vector<TeacherCourse> &get_teacherCourse() const { return teacherCourses; }
         const vector<QString> get_prerequisites() const { return prereq; }
         void debug();
+
     private:
         void init(ClassInfo cInfo);
         // 课程信息 eg COMS0031121009

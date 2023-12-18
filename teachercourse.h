@@ -15,7 +15,10 @@ namespace CourseSystem
         TeacherCourse(QString spid, QString teacher, int limits, multiCourseTime times);
         ~TeacherCourse() = default;
         multiCourseTime &get_times();
+        const QString &get_spid() const { return spid; }
+        int get_limits() const { return limits; }
         void debug();
+
     private:
         // 开课序号
         QString spid;

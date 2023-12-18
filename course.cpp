@@ -13,6 +13,23 @@ namespace CourseSystem
         push_teacherCourse(TeacherCourse(cInfo.course_sp_ID, cInfo.teacher, cInfo.limits, multiCourseTime(cInfo.times)));
     }
 
+    Course &Course::operator=(const Course &Course)
+    {
+        course_basic_ID = Course.course_basic_ID;
+        course_name = Course.course_name;
+        department = Course.department;
+        semester = Course.semester;
+        credit = Course.credit;
+        category = Course.category;
+        prereq = Course.prereq;
+        // 老师课程
+        for (auto teacherCourse : Course.teacherCourses)
+        {
+            push_teacherCourse(teacherCourse);
+        }
+        return *this;
+    }
+
     Course &Course::push_teacherCourse(const TeacherCourse &teacherCourse)
     {
         teacherCourses.push_back(teacherCourse);
@@ -21,17 +38,22 @@ namespace CourseSystem
 
     void Course::debug()
     {
-        qDebug() << course_basic_ID << "\n" << course_name << "\n" << department << "\n" << semester << "\n" << category << "\n" << credit;
-        for(auto x : prereq)
+        qDebug() << course_basic_ID << "\n"
+                 << course_name << "\n"
+                 << department << "\n"
+                 << semester << "\n"
+                 << category << "\n"
+                 << credit;
+        for (auto x : prereq)
             qDebug() << x << " ";
-        for(auto x : teacherCourses)
+        for (auto x : teacherCourses)
             x.debug();
     }
     Course &Course::push_teacherCourse(ClassInfo cInfo)
     {
-        if(course_basic_ID.isEmpty())
+        if (course_basic_ID.isEmpty())
             init(cInfo);
-        else if(course_basic_ID != cInfo.course_basic_ID)
+        else if (course_basic_ID != cInfo.course_basic_ID)
             throw QString("insert wrong basic Class");
         TeacherCourse teacherCourse(cInfo.course_sp_ID, cInfo.teacher, cInfo.limits, multiCourseTime(cInfo.times));
         teacherCourses.push_back(teacherCourse);
