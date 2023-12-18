@@ -2,6 +2,7 @@
 
 #include <QMainWindow>
 #include <QMouseEvent>
+#include <QStandardItemModel>
 #include <QtWinExtras/QtWin>
 #include <QtConcurrent/QtConcurrent>
 QT_BEGIN_NAMESPACE
@@ -22,12 +23,16 @@ protected:
     void mouseReleaseEvent(QMouseEvent* event);
 
 private slots:
-    void on_pushButton_clicked();
+    void updateClassTableView(const QString& dept = "");
     void on_QuitButton_clicked();
     void on_MinButton_clicked();
+    void on_testbutton_clicked();
+    void on_testbutton_2_clicked();
+    void on_comboBox_activated(const QString &arg1 = "");
 
 private:
     Ui::MainWindow *ui;
+    QStandardItemModel showClassTableModel;
     void update_test();
     QPoint mousePoint;
     bool mouse_press;
