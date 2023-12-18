@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>600</height>
+    <width>1070</width>
+    <height>630</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -21,14 +21,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>1000</width>
-    <height>600</height>
+    <width>1070</width>
+    <height>630</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1000</width>
-    <height>600</height>
+    <width>1070</width>
+    <height>630</height>
    </size>
   </property>
   <property name="sizeIncrement">
@@ -64,14 +64,14 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>1000</width>
-     <height>600</height>
+     <width>1070</width>
+     <height>630</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>1000</width>
-     <height>600</height>
+     <width>1070</width>
+     <height>630</height>
     </size>
    </property>
    <property name="contextMenuPolicy">
@@ -83,45 +83,13 @@
    <property name="styleSheet">
     <string notr="true">background-color: rgb(46, 51, 74);</string>
    </property>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>40</y>
-      <width>181</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>40</y>
-      <width>111</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>点我试试</string>
-    </property>
-   </widget>
    <widget class="QFrame" name="Left">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
       <width>251</width>
-      <height>601</height>
+      <height>801</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -286,7 +254,7 @@
        <x>0</x>
        <y>250</y>
        <width>251</width>
-       <height>321</height>
+       <height>371</height>
       </rect>
      </property>
      <property name="frameShape">
@@ -295,38 +263,69 @@
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QWidget" name="verticalLayoutWidget">
+     <widget class="QPushButton" name="testbutton">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
         <width>251</width>
-        <height>321</height>
+        <height>141</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_8">
-       <item>
-        <widget class="QPushButton" name="testbutton">
-         <property name="text">
-          <string>PushButton</string>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
-         </property>
-         <property name="flat">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>全校开课查询</string>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="testbutton_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>150</y>
+        <width>251</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>选课方案</string>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
      </widget>
     </widget>
    </widget>
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>910</x>
-      <y>10</y>
+      <x>980</x>
+      <y>0</y>
       <width>81</width>
       <height>41</height>
      </rect>
@@ -390,6 +389,185 @@
      </property>
     </widget>
    </widget>
+   <widget class="QWidget" name="ClassTable" native="true">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>40</y>
+      <width>811</width>
+      <height>591</height>
+     </rect>
+    </property>
+    <widget class="QTableView" name="classTable">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>60</y>
+       <width>801</width>
+       <height>521</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(158, 161, 176);</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>-10</y>
+       <width>181</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>22</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>全校开课查询</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>20</y>
+       <width>151</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>...</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>计算机科学与技术学院</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>心理学系</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>数学科学学院</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>通信与电子工程学院</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>地理科学学院</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>590</x>
+       <y>20</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>开课院系</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>430</x>
+       <y>20</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>学期</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_2">
+     <property name="geometry">
+      <rect>
+       <x>470</x>
+       <y>20</y>
+       <width>101</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="Plan" native="true">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>100</y>
+      <width>711</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <widget class="QTableView" name="Plan_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>691</width>
+       <height>461</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>210</y>
+       <width>181</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>Plan</string>
+     </property>
+    </widget>
+   </widget>
+   <zorder>Plan</zorder>
+   <zorder>Left</zorder>
+   <zorder>frame</zorder>
+   <zorder>ClassTable</zorder>
   </widget>
  </widget>
  <resources>

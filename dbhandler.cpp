@@ -1,4 +1,4 @@
-#include "dbhandler.h"
+﻿#include "dbhandler.h"
 #include "dbexceptions.h"
 #include <QDebug>
 
@@ -9,9 +9,15 @@ const QString DatabaseHandler::password = "";
 const int DatabaseHandler::port = 10080;
 
 DatabaseHandler::DatabaseHandler()
-    : _db(QSqlDatabase::addDatabase("QODBC"))
-    , _query(_db)
 {
+    if (QSqlDatabase::contains("mysql"))
+    {
+        _db = QSqlDatabase::database("mysql");
+    }
+    else {
+        _db = QSqlDatabase::addDatabase("QODBC");
+    }
+    _query = QSqlQuery(_db);
     _db.setHostName(hostname);
     _db.setPort(port);
     _db.setDatabaseName(database_name);

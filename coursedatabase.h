@@ -19,3 +19,7 @@ public:
     vector<ClassInfo> get_class_from_dept(const QString& dept);
     // void get_construct_data();
 };
+
+
+int weekday_map(const QString& w);
+QString toWeekdayString(int wd);
