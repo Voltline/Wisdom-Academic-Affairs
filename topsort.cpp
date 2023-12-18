@@ -1,8 +1,9 @@
 #include "topsort.h"
 namespace DataStructureAlgorithm
 {
-    TopSort::TopSort(vector<Course> courses, double max_credit)
+    TopSort::TopSort(vector<Course> courses, double max_credit, int limits)
     {
+        //TODO:检查课程合法性，是否有课程的总共选课人数也不够limits，或者课程的credi大于max_credit
         this->courses = courses;
         n = courses.size();
         m = n * n;
@@ -16,6 +17,7 @@ namespace DataStructureAlgorithm
         id_map = unordered_map<QString, int>();
         cnt = 0;
         this->max_credit = max_credit;
+        this->limits = limits;
         for (int i = 0; i < courses.size(); ++i)
         {
             auto &course = courses[i];
@@ -69,14 +71,23 @@ namespace DataStructureAlgorithm
         while (que.size())
         {
             ++turn;
+//            qDebug() << turn << endl;
             vector<int> vec;
+            vector<int> to_del;
             while (que.size())
             {
-                vec.push_back(que.front());
+                int x = que.front();
                 que.pop_front();
+                if (judge(vec, x))
+                    vec.push_back(x);
+                else
+                    to_del.push_back(x);
             }
+
             // sort(vec.begin(), vec.end(), cmp_out); // 目前先按照最少影响去拿
             ans.push_back(vec);
+            for (auto x : to_del)
+                que.push_front(x);
             for (int x : vec)
             {
                 for (int i = head[x]; i; i = nxt[i])
@@ -90,5 +101,22 @@ namespace DataStructureAlgorithm
                 }
             }
         }
+    }
+    bool TopSort::judge(vector<int> now, int new_course_id)
+    {
+//        qDebug() << "judge" << now.size() << " " << new_course_id;
+        vector<Course> vec;
+        for (auto x : now)
+            vec.push_back(courses[x-1]);
+        vec.push_back(courses[new_course_id-1]);
+        double credit = 0;
+        for (auto x : vec)
+            credit += x.get_credit();
+        if (credit > max_credit)
+            return false;
+//        qDebug() << "Dinic";
+        auto now_limits = Dinic(vec).sov();
+//        qDebug() << "finish judge";
+        return now_limits >= limits;
     }
 }

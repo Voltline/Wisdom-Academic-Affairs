@@ -5,6 +5,7 @@
 #include <QString>
 #include <queue>
 #include "stdAddition.h"
+#include "dinic.h"
 #include "course.h"
 using CourseSystem::Course;
 using std::deque;
@@ -16,7 +17,7 @@ namespace DataStructureAlgorithm
     class TopSort
     {
     public:
-        TopSort(vector<Course>, double max_credit = 32);
+        TopSort(vector<Course>, double max_credit = 32, int limits = 120);
         bool cmp_out(int x, int y)
         {
             return out[x] > out[y];
@@ -31,6 +32,7 @@ namespace DataStructureAlgorithm
         int cnt;
         int n, m;
         double max_credit;
+        int limits;
         void add(int x, int y)
         {
             ver[++tot] = y;
@@ -41,6 +43,7 @@ namespace DataStructureAlgorithm
         }
         void build();   // TODO : 建图
         void topsort(); // TODO: topsort
+        bool judge(vector<int>, int);
     };
 }
 
