@@ -456,31 +456,6 @@
        <string>...</string>
       </property>
      </item>
-     <item>
-      <property name="text">
-       <string>计算机科学与技术学院</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>心理学系</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>数学科学学院</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>通信与电子工程学院</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>地理科学学院</string>
-      </property>
-     </item>
     </widget>
     <widget class="QLabel" name="label_4">
      <property name="geometry">
@@ -541,9 +516,9 @@
      </property>
     </widget>
    </widget>
-   <zorder>Plan</zorder>
    <zorder>Left</zorder>
    <zorder>frame</zorder>
+   <zorder>Plan</zorder>
    <zorder>ClassTable</zorder>
   </widget>
  </widget>

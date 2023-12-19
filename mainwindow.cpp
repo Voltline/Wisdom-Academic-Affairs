@@ -14,7 +14,16 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Plan->setVisible(false);
     ui->classTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //自动设置行高
     ui->classTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);//自动设置列宽
-
+    //查询数据库添加下拉菜单
+    CourseDatabase cdb;
+    auto ans = cdb.get_all_class_info();
+    vector<QString> deplist;
+    for(auto it  : ans)
+        deplist.push_back(it.department);
+    std::sort(deplist.begin(), deplist.end());
+    auto end = unique(deplist.begin(), deplist.end());
+    for(auto it = deplist.begin(); it != end; ++it)
+        ui->comboBox->addItem(*it);
 }
 
 MainWindow::~MainWindow()
