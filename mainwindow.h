@@ -9,6 +9,7 @@
 #include "ui_mainwindow.h"
 #include "coursedatabase.h"
 #include "CourseSystem.h"
+#include "topsort.h"
 #include <algorithm>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
