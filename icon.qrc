@@ -8,5 +8,7 @@
         <file>user.png</file>
         <file>admin1.png</file>
         <file>user1.png</file>
+        <file>allsearch.png</file>
+        <file>plan.png</file>
     </qresource>
 </RCC>
