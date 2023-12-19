@@ -49,6 +49,10 @@
   <property name="windowTitle">
    <string>Wisdom Academic Affairs</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="icon.qrc">
+    <normaloff>:/back/classtable_icon.png</normaloff>:/back/classtable_icon.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
@@ -141,7 +145,7 @@
           </sizepolicy>
          </property>
          <property name="styleSheet">
-          <string notr="true">image: url(:/back/icon.jpg);</string>
+          <string notr="true">image: url(:/back/admin1.png);</string>
          </property>
          <property name="text">
           <string/>
@@ -197,7 +201,7 @@
               <string notr="true">color: rgb(0, 126, 249);</string>
              </property>
              <property name="text">
-              <string>Voltline</string>
+              <string>Admin</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -214,7 +218,7 @@
              </property>
              <property name="font">
               <font>
-               <family>Century Gothic</family>
+               <family>微软雅黑</family>
                <pointsize>11</pointsize>
                <weight>75</weight>
                <bold>true</bold>
@@ -224,7 +228,7 @@
               <string notr="true">color: rgb(158, 161, 176);</string>
              </property>
              <property name="text">
-              <string>Administrator</string>
+              <string>管理员</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -258,10 +262,15 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>250</y>
+       <y>230</y>
        <width>251</width>
-       <height>371</height>
+       <height>331</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Agency FB</family>
+      </font>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -273,19 +282,22 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>10</y>
         <width>251</width>
-        <height>141</height>
+        <height>91</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <family>微软雅黑</family>
         <pointsize>15</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+        <stylestrategy>PreferDefault</stylestrategy>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
+       <string notr="true">color: rgb(0, 126, 249);</string>
       </property>
       <property name="text">
        <string>全校开课查询</string>
@@ -301,28 +313,62 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>150</y>
+        <y>100</y>
         <width>251</width>
-        <height>141</height>
+        <height>91</height>
        </rect>
       </property>
       <property name="font">
        <font>
         <family>微软雅黑</family>
         <pointsize>15</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 255, 255);</string>
+       <string notr="true">color: rgb(0, 126, 249);</string>
       </property>
       <property name="text">
-       <string>选课方案</string>
+       <string>选课方案查询</string>
       </property>
       <property name="autoDefault">
        <bool>false</bool>
       </property>
       <property name="flat">
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="AllClassLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>3</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 126, 249);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="PlanLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>100</y>
+        <width>3</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 126, 249);</string>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>
@@ -404,6 +450,11 @@
       <height>591</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>等线</family>
+     </font>
+    </property>
     <widget class="QTableView" name="classTable">
      <property name="geometry">
       <rect>
@@ -428,8 +479,10 @@
      </property>
      <property name="font">
       <font>
-       <family>微软雅黑</family>
+       <family>等线</family>
        <pointsize>22</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -442,9 +495,9 @@
     <widget class="QComboBox" name="comboBox">
      <property name="geometry">
       <rect>
-       <x>640</x>
+       <x>620</x>
        <y>20</y>
-       <width>161</width>
+       <width>181</width>
        <height>21</height>
       </rect>
      </property>
@@ -460,7 +513,7 @@
     <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
-       <x>550</x>
+       <x>530</x>
        <y>20</y>
        <width>81</width>
        <height>21</height>
@@ -468,7 +521,7 @@
      </property>
      <property name="font">
       <font>
-       <family>微软雅黑</family>
+       <family>等线</family>
        <pointsize>10</pointsize>
       </font>
      </property>
@@ -485,8 +538,8 @@
      <rect>
       <x>270</x>
       <y>100</y>
-      <width>781</width>
-      <height>511</height>
+      <width>711</width>
+      <height>481</height>
      </rect>
     </property>
     <widget class="QTableView" name="Plan_2">
@@ -516,6 +569,10 @@
      </property>
     </widget>
    </widget>
+   <zorder>Left</zorder>
+   <zorder>frame</zorder>
+   <zorder>Plan</zorder>
+   <zorder>ClassTable</zorder>
   </widget>
  </widget>
  <resources>

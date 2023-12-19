@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Plan->setVisible(false);
     ui->classTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //自动设置行高
     ui->classTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);//自动设置列宽
+    ui->AllClassLabel->setVisible(false);
+    ui->PlanLabel->setVisible(false);
     //查询数据库添加下拉菜单
     CourseDatabase cdb;
     auto ans = cdb.get_all_class_info();
@@ -114,14 +116,22 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event)
 void MainWindow::on_testbutton_clicked()
 {
     ui->ClassTable->setVisible(true);
+    ui->AllClassLabel->setVisible(true);
     ui->Plan->setVisible(false);
+    ui->PlanLabel->setVisible(false);
+    ui->testbutton->setStyleSheet("color: rgb(0, 126, 249); background-color: #2E334A; border: none;");
+    ui->testbutton_2->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
 }
 
 
 void MainWindow::on_testbutton_2_clicked()
 {
     ui->ClassTable->setVisible(false);
+    ui->AllClassLabel->setVisible(false);
     ui->Plan->setVisible(true);
+    ui->PlanLabel->setVisible(true);
+    ui->testbutton->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
+    ui->testbutton_2->setStyleSheet("color: rgb(0, 126, 249); background-color: #2E334A; border: none;");
 }
 
 void MainWindow::on_comboBox_activated(const QString &arg1)
