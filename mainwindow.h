@@ -30,6 +30,10 @@ private slots:
     void on_testbutton_2_clicked();
     void on_comboBox_activated(const QString &arg1 = "");
 
+    void on_testbutton_3_clicked();
+
+    void on_aboutButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel showClassTableModel;

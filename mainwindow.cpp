@@ -16,6 +16,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->classTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);//自动设置列宽
     ui->AllClassLabel->setVisible(false);
     ui->PlanLabel->setVisible(false);
+    ui->MainPageLabel->setVisible(false);
+    ui->About->setVisible(false);
+    ui->AboutFrame->setVisible(false);
+    ui->testbutton->setStyleSheet("color: rgb(0, 126, 249); border: none;");
+    ui->testbutton_2->setStyleSheet("color: rgb(0, 126, 249); border: none;");
+    ui->testbutton_3->setStyleSheet("color: rgb(0, 126, 249); border: none;");
+    ui->aboutButton->setStyleSheet("color: rgb(0, 126, 249); border: none;");
     //查询数据库添加下拉菜单
     CourseDatabase cdb;
     auto ans = cdb.get_all_class_info();
@@ -117,10 +124,16 @@ void MainWindow::on_testbutton_clicked()
 {
     ui->ClassTable->setVisible(true);
     ui->AllClassLabel->setVisible(true);
+    ui->frame_2->setVisible(false);
+    ui->MainPageLabel->setVisible(false);
     ui->Plan->setVisible(false);
     ui->PlanLabel->setVisible(false);
+    ui->About->setVisible(false);
+    ui->AboutFrame->setVisible(false);
     ui->testbutton->setStyleSheet("color: rgb(0, 126, 249); background-color: #2E334A; border: none;");
     ui->testbutton_2->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
+    ui->testbutton_3->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
+    ui->aboutButton->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
 }
 
 
@@ -128,14 +141,54 @@ void MainWindow::on_testbutton_2_clicked()
 {
     ui->ClassTable->setVisible(false);
     ui->AllClassLabel->setVisible(false);
+    ui->frame_2->setVisible(false);
+    ui->MainPageLabel->setVisible(false);
     ui->Plan->setVisible(true);
     ui->PlanLabel->setVisible(true);
+    ui->About->setVisible(false);
+    ui->AboutFrame->setVisible(false);
     ui->testbutton->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
     ui->testbutton_2->setStyleSheet("color: rgb(0, 126, 249); background-color: #2E334A; border: none;");
+    ui->testbutton_3->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
+    ui->aboutButton->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
 }
 
 void MainWindow::on_comboBox_activated(const QString &arg1)
 {
     updateClassTableView(arg1);
+}
+
+
+void MainWindow::on_testbutton_3_clicked()
+{
+    ui->ClassTable->setVisible(false);
+    ui->AllClassLabel->setVisible(false);
+    ui->frame_2->setVisible(true);
+    ui->MainPageLabel->setVisible(true);
+    ui->Plan->setVisible(false);
+    ui->PlanLabel->setVisible(false);
+    ui->About->setVisible(false);
+    ui->AboutFrame->setVisible(false);
+    ui->testbutton->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
+    ui->testbutton_2->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
+    ui->testbutton_3->setStyleSheet("color: rgb(0, 126, 249); background-color: #2E334A; border: none;");
+    ui->aboutButton->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
+}
+
+
+void MainWindow::on_aboutButton_clicked()
+{
+    ui->ClassTable->setVisible(false);
+    ui->AllClassLabel->setVisible(false);
+    ui->frame_2->setVisible(false);
+    ui->MainPageLabel->setVisible(false);
+    ui->Plan->setVisible(false);
+    ui->PlanLabel->setVisible(false);
+    ui->About->setVisible(true);
+    ui->AboutFrame->setVisible(true);
+    ui->testbutton->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
+    ui->testbutton_2->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
+    ui->testbutton_3->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
+    ui->aboutButton->setStyleSheet("color: rgb(0, 126, 249); background-color: #2E334A; border: none;");
 }
 

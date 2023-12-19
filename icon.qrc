@@ -10,5 +10,8 @@
         <file>user1.png</file>
         <file>allsearch.png</file>
         <file>plan.png</file>
+        <file>waa_icon.png</file>
+        <file>main.png</file>
+        <file>about.png</file>
     </qresource>
 </RCC>
