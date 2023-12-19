@@ -41,7 +41,7 @@ private slots:
     void on_testbutton_3_clicked();
     void on_aboutButton_clicked();
     void on_pushButton_sov1_clicked();
-
+    void on_lineEdit_editingFinished();
     void on_lineEdit_textEdited(const QString &arg1);
     void on_pushButton_sov1_pressed();
 
