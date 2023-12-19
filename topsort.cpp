@@ -84,7 +84,7 @@ namespace DataStructureAlgorithm
         while (que.size())
         {
             ++turn;
-            qDebug() << "begin" << turn << endl;
+            // qDebug() << "begin" << turn << endl;
 
             vector<Course> node_now;
             while (que.size())
@@ -98,10 +98,10 @@ namespace DataStructureAlgorithm
                 sort(node_now.begin(), node_now.end());
             else
                 sort(node_now.begin(), node_now.end(), std::greater<Course>());
-            for (auto it : node_now)
-            {
-                qDebug() << it.get_course_name() << " " << it.priority << " " << it.get_semester();
-            }
+            // for (auto it : node_now)
+            // {
+            //     qDebug() << it.get_course_name() << " " << it.priority << " " << it.get_semester();
+            // }
             vector<int> vec;
             vector<int> to_del;
             for (auto course : node_now)

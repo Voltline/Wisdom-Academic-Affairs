@@ -10,6 +10,7 @@
 #include "coursedatabase.h"
 #include "CourseSystem.h"
 #include "topsort.h"
+#include "trie.h"
 #include <algorithm>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,6 +31,7 @@ protected:
 
 private slots:
     void updateClassTableView(const QString& dept = "");
+    void updateAnsTableView(const vector<vector<Course>>);
     void on_QuitButton_clicked();
     void on_MinButton_clicked();
     void on_testbutton_clicked();
@@ -40,13 +42,18 @@ private slots:
     void on_aboutButton_clicked();
     void on_pushButton_sov1_clicked();
 
+    void on_lineEdit_textEdited(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel showClassTableModel;
+    QStandardItemModel showAnsTableModel;
     vector<ClassInfo> ans_set;
     QStringListModel *stringListModel; // 候选词列表
     QCompleter *completer;
     void update_test();
     QPoint mousePoint;
     bool mouse_press;
+    Trie* trie;
+
 };

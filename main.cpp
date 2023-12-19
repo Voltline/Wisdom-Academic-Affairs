@@ -39,8 +39,8 @@ int main(int argc, char *argv[])
     */
     //测试数据库
 //    auto ans{ cdb.get_one_class_info("COMS0031121009") };
-//    auto ans{cdb.get_class_from_dept("测试数据1")};
-    auto ans{cdb.get_class_from_dept("计算机科学与技术学院")};
+    auto ans{cdb.get_class_from_dept("测试数据1")};
+//    auto ans{cdb.get_class_from_dept("计算机科学与技术学院")};
     for (const auto& l : ans)
     {
 //        l.display();
@@ -55,13 +55,14 @@ int main(int argc, char *argv[])
     for(auto [x,y]: courses)
     {
         vec.push_back(y);
+        qDebug() << y.get_course_name() << endl;
     }
 
     //测试topsort
     //推荐课程
-    auto topans = TopSort(vec, {15, 15, 15, 15, 20, 20, 32, 32}, 10).sov();
+//    auto topans = TopSort(vec, {15, 15, 15, 15, 20, 20, 32, 32}, 10).sov();
     //速通课程
-//    auto topans = TopSort(vec, {32, 32, 32, 32, 32, 32, 32, 32}, 10).sov();
+    auto topans = TopSort(vec, {32, 32, 32, 32, 32, 32, 32, 32}, 10).sov();
     qDebug() << "ans";
     for(auto x : topans)
     {

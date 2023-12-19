@@ -37,6 +37,8 @@ MainWindow::MainWindow(QWidget *parent)
     completer = new QCompleter();
     completer->setCaseSensitivity(Qt::CaseInsensitive);
     ui->lineEdit->setCompleter(completer);
+    //设置候选
+    trie = new Trie();
 }
 
 MainWindow::~MainWindow()
@@ -85,6 +87,30 @@ void MainWindow::updateClassTableView(const QString& dept)
            new QStandardItem{QString::number(ans_set[i].limits)});
     }
     ui->classTable->setModel(&showClassTableModel);
+}
+
+void MainWindow::updateAnsTableView(const vector<vector<CourseSystem::Course> > courses)
+{
+    showAnsTableModel.clear();
+    showAnsTableModel.setHorizontalHeaderLabels(
+                {"学期", "课程序号","课程名称"});
+    int cnt = 0;
+    int cnt_item=0;
+    for(auto line : courses)
+    {
+        ++cnt;
+        for(auto course : line)
+        {
+            showAnsTableModel.setItem(cnt_item, 0,
+               new QStandardItem{QString::fromStdString("第"+std::to_string(cnt)+"学期")});
+            showAnsTableModel.setItem(cnt_item, 1,
+               new QStandardItem{course.get_course_basic_ID()});
+            showAnsTableModel.setItem(cnt_item, 2,
+               new QStandardItem{course.get_course_name()});
+            ++cnt_item;
+        }
+    }
+    ui->Plan_2->setModel(&showAnsTableModel);
 }
 
 
@@ -209,19 +235,48 @@ void MainWindow::on_pushButton_sov1_clicked()
         vec.push_back(y);
     }
     //更新候选词列表
-    QStringList stringList;
+    trie = new Trie();
     for(auto x : vec)
     {
-        stringList.push_back(x.get_course_name());
+        trie->insert(0, x.get_course_name());
     }
-    stringListModel->setStringList(stringList);
-    completer->setModel(stringListModel);
     //处理用户选择
-
-
+    vector<double> credit;
+    credit.push_back(ui->doubleSpinBox_d1->value());
+    credit.push_back(ui->doubleSpinBox_d2->value());
+    credit.push_back(ui->doubleSpinBox_d3->value());
+    credit.push_back(ui->doubleSpinBox_d4->value());
+    credit.push_back(ui->doubleSpinBox_d5->value());
+    credit.push_back(ui->doubleSpinBox_d6->value());
+    credit.push_back(ui->doubleSpinBox_d7->value());
+    credit.push_back(ui->doubleSpinBox_10->value());
+    int limit = ui->spinBox->value();
     //
 
-    auto topans = DataStructureAlgorithm::TopSort(vec, {15, 15, 15, 15, 20, 20, 32, 32}, 10).sov();
+    auto topans = DataStructureAlgorithm::TopSort(vec, credit, limit).sov();
+    updateAnsTableView(topans);
+
+}
+
+
+void MainWindow::on_lineEdit_textEdited(const QString &arg1)
+{
+    auto it = trie->find(arg1);
+    QStringList stringlist;
+    for(const auto &x : it.second)
+    {
+        stringlist.append(x.first);
+    }
+    stringListModel->setStringList(stringlist);
+    completer->setModel(stringListModel);
+}
+
+
+void MainWindow::on_lineEdit_editingFinished()
+{
+    QItemSelectionModel *selectionModel = ui->Plan_2->selectionModel();
+    // 获取所有选中的行
+    QModelIndexList selectedRows = selectionModel->selectedRows();
 
 }
 
