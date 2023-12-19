@@ -25,7 +25,8 @@ namespace CourseSystem
         semester = Course.semester;
         credit = Course.credit;
         category = Course.category;
-        prereq = Course.prereq;
+        prereq = Course.prereq; 
+        nxtreq = Course.nxtreq;
         // 老师课程
         for (auto teacherCourse : Course.teacherCourses)
         {
@@ -72,6 +73,9 @@ namespace CourseSystem
         credit = cInfo.credit;
         category = cInfo.category;
         prereq = cInfo.prereq;
+        nxtreq = vector<QString>();
+        if (!cInfo.succeed.isEmpty())
+            nxtreq.push_back(cInfo.succeed);
     }
     bool operator<(const Course &c1, const Course &c2)
     {

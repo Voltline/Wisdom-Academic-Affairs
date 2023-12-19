@@ -59,9 +59,9 @@ int main(int argc, char *argv[])
 
     //测试topsort
     //推荐课程
-//    auto topans = TopSort(vec, {15, 15, 15, 15, 20, 20, 32, 32}, 10).sov();
+    auto topans = TopSort(vec, {15, 15, 15, 15, 20, 20, 32, 32}, 10).sov();
     //速通课程
-    auto topans = TopSort(vec, {32, 32, 32, 32, 32, 32, 32, 32}, 10).sov();
+//    auto topans = TopSort(vec, {32, 32, 32, 32, 32, 32, 32, 32}, 10).sov();
     qDebug() << "ans";
     for(auto x : topans)
     {

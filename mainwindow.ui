@@ -485,8 +485,8 @@
      <rect>
       <x>270</x>
       <y>100</y>
-      <width>711</width>
-      <height>481</height>
+      <width>781</width>
+      <height>511</height>
      </rect>
     </property>
     <widget class="QTableView" name="Plan_2">
@@ -516,10 +516,6 @@
      </property>
     </widget>
    </widget>
-   <zorder>Left</zorder>
-   <zorder>frame</zorder>
-   <zorder>Plan</zorder>
-   <zorder>ClassTable</zorder>
   </widget>
  </widget>
  <resources>

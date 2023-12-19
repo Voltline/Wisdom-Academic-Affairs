@@ -113,6 +113,7 @@ namespace DataStructureAlgorithm
                     // 选课后 直接而后继增加
                     for (auto it : course.get_nxtrequisites())
                     {
+                        // qDebug() << "nxt" << course.get_course_name() << " " << it;
                         int y = id_map[it];
                         if (y)
                             courses[y - 1].priority++;
