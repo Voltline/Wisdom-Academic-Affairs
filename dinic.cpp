@@ -174,7 +174,7 @@ namespace DataStructureAlgorithm
     }
     void Dinic::add(int x, int y, int z)
     {
-        // qDebug() << x <<  " " << y << " " << z;
+//         qDebug() << x <<  " " << y << " " << z;
         ver[++tot] = y;
         edge[tot] = z;
         nxt[tot] = head[x];

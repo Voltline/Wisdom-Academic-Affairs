@@ -39,25 +39,12 @@ int main(int argc, char *argv[])
     */
     //测试数据库
 //    auto ans{ cdb.get_one_class_info("COMS0031121009") };
-    auto ans{cdb.get_class_from_dept("计算机科学与技术学院")};
+    auto ans{cdb.get_class_from_dept("测试数据1")};
     for (const auto& l : ans)
     {
-//        l.display();
+        l.display();
     }
     //测试ClassSystem
-    /*
-    std::map<QString, CourseSystem::Course> courses;
-    for(auto courseinfo : ans)
-    {
-        courses[courseinfo.course_basic_ID].push_teacherCourse(courseinfo);
-    }
-    for(auto [x,y] : courses)
-    {
-//        y.debug();
-        qDebug() << y.get_course_name();
-    }
-    */
-    //测试topsort
     std::map<QString, CourseSystem::Course> courses;
     for(auto courseinfo : ans)
     {
@@ -68,7 +55,10 @@ int main(int argc, char *argv[])
     {
         vec.push_back(y);
     }
-    auto topans = TopSort(vec, 15, 120).sov();
+
+    //测试topsort
+
+    auto topans = TopSort(vec, {10, 10, 15, 15, 20, 20, 32, 32}, 120).sov();
     qDebug() << "ans";
     for(auto x : topans)
     {
@@ -79,18 +69,9 @@ int main(int argc, char *argv[])
         }
         qDebug() << "\n";
     }
+
     //测试dinic
     /*
-    std::map<QString, CourseSystem::Course> courses;
-    for(auto courseinfo : ans)
-    {
-        courses[courseinfo.course_basic_ID].push_teacherCourse(courseinfo);
-    }
-    vector<CourseSystem::Course> vec;
-    for(auto [x,y] : courses)
-    {
-        vec.push_back(y);
-    }
     qDebug() << Dinic(vec).sov();
     */
     return a.exec();

@@ -4,6 +4,8 @@
 #include <unordered_map>
 #include <QString>
 #include <queue>
+#include <string>
+#include "AlgorithmException.h"
 #include "stdAddition.h"
 #include "dinic.h"
 #include "course.h"
@@ -17,7 +19,7 @@ namespace DataStructureAlgorithm
     class TopSort
     {
     public:
-        TopSort(vector<Course>, double max_credit = 32, int limits = 120);
+        TopSort(vector<Course>, vector<double> max_credit = {10, 10, 15, 15, 20, 20, 32, 32}, int limits = 120);
         bool cmp_out(int x, int y)
         {
             return out[x] > out[y];
@@ -31,7 +33,7 @@ namespace DataStructureAlgorithm
         int tot;
         int cnt;
         int n, m;
-        double max_credit;
+        vector<double> max_credit;
         int limits;
         void add(int x, int y)
         {
@@ -43,7 +45,7 @@ namespace DataStructureAlgorithm
         }
         void build();   // TODO : 建图
         void topsort(); // TODO: topsort
-        bool judge(vector<int>, int);
+        bool judge(vector<int>, int, double max_credit);
     };
 }
 

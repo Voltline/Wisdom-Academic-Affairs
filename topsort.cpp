@@ -1,9 +1,19 @@
 #include "topsort.h"
 namespace DataStructureAlgorithm
 {
-    TopSort::TopSort(vector<Course> courses, double max_credit, int limits)
+    TopSort::TopSort(vector<Course> courses, vector<double> max_credit, int limits)
     {
-        //TODO:检查课程合法性，是否有课程的总共选课人数也不够limits，或者课程的credi大于max_credit
+        // TODO:检查课程合法性，是否有课程的总共选课人数也不够limits，或者课程的credi大于max_credit
+        for (auto course : courses)
+        {
+            int sum_limits = 0;
+            for (auto x : course.get_teacherCourse())
+            {
+                sum_limits += x.get_limits();
+            }
+            if (sum_limits < limits)
+                throw AlgorithmException::TopsortException((course.get_course_basic_ID().toStdString() + "'s limits < min_limits").c_str());
+        }
         this->courses = courses;
         n = courses.size();
         m = n * n;
@@ -67,18 +77,21 @@ namespace DataStructureAlgorithm
             if (in[i] == 0)
                 que.push_back(i);
         }
+        // for(auto x : max_credit)
+        //     qDebug() << x;
+        // return;
         int turn = 0;
         while (que.size())
         {
             ++turn;
-//            qDebug() << turn << endl;
+            // qDebug() << turn << endl;
             vector<int> vec;
             vector<int> to_del;
             while (que.size())
             {
                 int x = que.front();
                 que.pop_front();
-                if (judge(vec, x))
+                if (judge(vec, x, turn > max_credit.size() ? 100000 : max_credit[turn - 1]))
                     vec.push_back(x);
                 else
                     to_del.push_back(x);
@@ -102,21 +115,21 @@ namespace DataStructureAlgorithm
             }
         }
     }
-    bool TopSort::judge(vector<int> now, int new_course_id)
+    bool TopSort::judge(vector<int> now, int new_course_id, double max_credit)
     {
-//        qDebug() << "judge" << now.size() << " " << new_course_id;
+        //        qDebug() << "judge" << now.size() << " " << new_course_id;
         vector<Course> vec;
         for (auto x : now)
-            vec.push_back(courses[x-1]);
-        vec.push_back(courses[new_course_id-1]);
+            vec.push_back(courses[x - 1]);
+        vec.push_back(courses[new_course_id - 1]);
         double credit = 0;
         for (auto x : vec)
             credit += x.get_credit();
         if (credit > max_credit)
             return false;
-//        qDebug() << "Dinic";
+        //        qDebug() << "Dinic";
         auto now_limits = Dinic(vec).sov();
-//        qDebug() << "finish judge";
+        //        qDebug() << "finish judge";
         return now_limits >= limits;
     }
 }

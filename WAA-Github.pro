@@ -25,6 +25,7 @@ SOURCES += \
     trie.cpp
 
 HEADERS += \
+    AlgorithmException.h \
     CourseSystem.h \
     classinfo.h \
     course.h \
