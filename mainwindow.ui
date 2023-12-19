@@ -684,9 +684,9 @@
     <widget class="QTableView" name="Plan_2">
      <property name="geometry">
       <rect>
-       <x>223</x>
-       <y>71</y>
-       <width>571</width>
+       <x>220</x>
+       <y>70</y>
+       <width>581</width>
        <height>511</height>
       </rect>
      </property>
@@ -697,8 +697,8 @@
     <widget class="QLineEdit" name="lineEdit">
      <property name="geometry">
       <rect>
-       <x>470</x>
-       <y>20</y>
+       <x>670</x>
+       <y>30</y>
        <width>131</width>
        <height>21</height>
       </rect>
@@ -734,16 +734,16 @@
     <widget class="QLabel" name="label_15">
      <property name="geometry">
       <rect>
-       <x>340</x>
-       <y>10</y>
-       <width>121</width>
-       <height>31</height>
+       <x>570</x>
+       <y>30</y>
+       <width>91</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="font">
       <font>
        <family>微软雅黑</family>
-       <pointsize>13</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -756,11 +756,21 @@
     <widget class="QToolBox" name="toolBox">
      <property name="geometry">
       <rect>
-       <x>1</x>
-       <y>71</y>
+       <x>0</x>
+       <y>70</y>
        <width>211</width>
-       <height>501</height>
+       <height>511</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑 Light</family>
+       <pointsize>13</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(52, 61, 120);</string>
      </property>
      <property name="currentIndex">
       <number>0</number>
@@ -771,7 +781,7 @@
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>411</height>
+        <height>400</height>
        </rect>
       </property>
       <attribute name="label">
@@ -780,45 +790,56 @@
       <widget class="QPushButton" name="pushButton_sov1">
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>10</x>
          <y>10</y>
-         <width>211</width>
-         <height>51</height>
+         <width>191</width>
+         <height>61</height>
         </rect>
        </property>
        <property name="font">
         <font>
          <family>微软雅黑</family>
-         <pointsize>12</pointsize>
+         <pointsize>14</pointsize>
+         <underline>false</underline>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
+        <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(48, 149, 255);
+border-radius: 25px;</string>
        </property>
        <property name="text">
         <string>培养方案</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QPushButton" name="pushButton_sov2">
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>10</x>
          <y>80</y>
-         <width>211</width>
-         <height>51</height>
+         <width>191</width>
+         <height>61</height>
         </rect>
        </property>
        <property name="font">
         <font>
          <family>微软雅黑</family>
-         <pointsize>12</pointsize>
+         <pointsize>14</pointsize>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(255, 255, 255);</string>
+        <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(48, 149, 255);
+border-radius: 25px;</string>
        </property>
        <property name="text">
         <string>速通方案</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </widget>
@@ -828,13 +849,13 @@
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>411</height>
+        <height>400</height>
        </rect>
       </property>
       <attribute name="label">
        <string>学分设置</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>1</x>
@@ -1372,10 +1393,18 @@
       </widget>
      </widget>
      <widget class="QWidget" name="page_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>211</width>
+        <height>400</height>
+       </rect>
+      </property>
       <attribute name="label">
-       <string>页</string>
+       <string>年级人数</string>
       </attribute>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <property name="geometry">
         <rect>
          <x>0</x>
