@@ -5,6 +5,11 @@
 #include <QStandardItemModel>
 #include <QtWinExtras/QtWin>
 #include <QtConcurrent/QtConcurrent>
+#include <QCompleter>
+#include "ui_mainwindow.h"
+#include "coursedatabase.h"
+#include "CourseSystem.h"
+#include <algorithm>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -30,9 +35,14 @@ private slots:
     void on_testbutton_2_clicked();
     void on_comboBox_activated(const QString &arg1 = "");
 
+    void on_pushButton_sov1_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel showClassTableModel;
+    vector<ClassInfo> ans_set;
+    QStringListModel *stringListModel; // 候选词列表
+    QCompleter *completer;
     void update_test();
     QPoint mousePoint;
     bool mouse_press;
