@@ -27,6 +27,9 @@ namespace CourseSystem
         const vector<TeacherCourse> &get_teacherCourse() const { return teacherCourses; }
         const vector<QString> get_prerequisites() const { return prereq; }
         void debug();
+        friend bool operator<(const Course &c1, const Course &c2);
+        friend bool operator>(const Course &c1, const Course &c2);
+        int priority;
 
     private:
         void init(ClassInfo cInfo);
@@ -45,7 +48,8 @@ namespace CourseSystem
 
         // 前序课程
         vector<QString> prereq;
-
+        // 后继课程
+        vector<QString> nxtreq;
         // 开课教师课程
         vector<TeacherCourse> teacherCourses;
     };

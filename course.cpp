@@ -10,6 +10,7 @@ namespace CourseSystem
         credit = cInfo.credit;
         category = cInfo.category;
         prereq = cInfo.prereq;
+        priority = 0;
         push_teacherCourse(TeacherCourse(cInfo.course_sp_ID, cInfo.teacher, cInfo.limits, multiCourseTime(cInfo.times)));
     }
 
@@ -68,5 +69,14 @@ namespace CourseSystem
         credit = cInfo.credit;
         category = cInfo.category;
         prereq = cInfo.prereq;
+    }
+    bool operator<(const Course &c1, const Course &c2)
+    {
+
+        return c1.priority == c2.priority ? c1.semester < c2.semester : c1.priority > c2.priority;
+    }
+    bool operator>(const Course &c1, const Course &c2)
+    {
+        return c1.priority == c2.priority ? c1.semester > c2.semester : c1.priority > c2.priority;
     }
 }

@@ -84,23 +84,37 @@ namespace DataStructureAlgorithm
         while (que.size())
         {
             ++turn;
-            // qDebug() << turn << endl;
-            vector<int> vec;
-            vector<int> to_del;
+            qDebug() << "begin" << turn << endl;
+
+            vector<Course> node_now;
             while (que.size())
             {
-                int x = que.front();
+                courses[que.front() - 1].priority++;
+                node_now.push_back(courses[que.front() - 1]);
                 que.pop_front();
+            }
+            //奇数学期优先Spring 偶数学期优先Fall 并且按优先级进行计算
+            if (turn & 1)
+                sort(node_now.begin(), node_now.end());
+            else
+                sort(node_now.begin(), node_now.end(), std::greater<Course>());
+            for(auto it : node_now)
+            {
+                qDebug() << it.get_course_name() << " " << it.priority << " " << it.get_semester();
+            }
+            vector<int> vec;
+            vector<int> to_del;
+            for (auto course : node_now)
+            {
+                int x = id_map[course.get_course_basic_ID()];
                 if (judge(vec, x, turn > max_credit.size() ? 100000 : max_credit[turn - 1]))
                     vec.push_back(x);
                 else
                     to_del.push_back(x);
             }
-
-            // sort(vec.begin(), vec.end(), cmp_out); // 目前先按照最少影响去拿
             ans.push_back(vec);
-            for (auto x : to_del)
-                que.push_front(x);
+            for (auto it = to_del.rbegin(); it != to_del.rend(); ++it)
+                que.push_front(*it);
             for (int x : vec)
             {
                 for (int i = head[x]; i; i = nxt[i])
