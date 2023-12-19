@@ -1,7 +1,5 @@
 ﻿#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "coursedatabase.h"
-#include <algorithm>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -33,6 +31,12 @@ MainWindow::MainWindow(QWidget *parent)
     auto end = unique(deplist.begin(), deplist.end());
     for(auto it = deplist.begin(); it != end; ++it)
         ui->comboBox->addItem(*it);
+    //设置候选词
+    //设置候选词model
+    stringListModel = new QStringListModel(this);
+    completer = new QCompleter();
+    completer->setCaseSensitivity(Qt::CaseInsensitive);
+    ui->lineEdit->setCompleter(completer);
 }
 
 MainWindow::~MainWindow()
@@ -44,7 +48,6 @@ MainWindow::~MainWindow()
 void MainWindow::updateClassTableView(const QString& dept)
 {
     CourseDatabase cdb;
-    vector<ClassInfo> ans_set;
     if (dept == "...") ans_set = cdb.get_all_class_info();
     else ans_set = cdb.get_class_from_dept(dept);
     std::sort(ans_set.begin(), ans_set.end());
@@ -190,5 +193,35 @@ void MainWindow::on_aboutButton_clicked()
     ui->testbutton_2->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
     ui->testbutton_3->setStyleSheet("color: rgb(0, 126, 249); background-color: #181E36; border: none;");
     ui->aboutButton->setStyleSheet("color: rgb(0, 126, 249); background-color: #2E334A; border: none;");
+}
+
+
+void MainWindow::on_pushButton_sov1_clicked()
+{
+    std::map<QString, CourseSystem::Course> courses;
+    for(auto courseinfo : ans_set)
+    {
+        courses[courseinfo.course_basic_ID].push_teacherCourse(courseinfo);
+    }
+    vector<CourseSystem::Course> vec;
+    for(auto [x,y]: courses)
+    {
+        vec.push_back(y);
+    }
+    //更新候选词列表
+    QStringList stringList;
+    for(auto x : vec)
+    {
+        stringList.push_back(x.get_course_name());
+    }
+    stringListModel->setStringList(stringList);
+    completer->setModel(stringListModel);
+    //处理用户选择
+
+
+    //
+
+    auto topans = DataStructureAlgorithm::TopSort(vec, {15, 15, 15, 15, 20, 20, 32, 32}, 10).sov();
+
 }
 
