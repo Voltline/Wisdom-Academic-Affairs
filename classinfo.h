@@ -45,15 +45,17 @@ public:
     int limits;
     // 前序课程
     vector<QString> prereq;
+    // 直接后继课程
+    QString succeed;
 
 public:
     ClassInfo() = delete;
     ClassInfo(const QString &cid, const QString &cspid, const QString &cname, const QString &t,
               const QString &dept, const QString &seme, const QString &cate, const vector<ClassPeriod> &tms,
-              double c, int bw, int lw, int lm, const vector<QString> &p)
-        : course_basic_ID(cid), course_sp_ID(cspid), course_name(cname), teacher(t), department(dept), semester(seme), category(cate), times(tms), credit(c), beg_week(bw), last_week(lw), limits(lm), prereq(p) {}
+              double c, int bw, int lw, int lm, const vector<QString> &p, const QString& s)
+        : course_basic_ID(cid), course_sp_ID(cspid), course_name(cname), teacher(t), department(dept), semester(seme), category(cate), times(tms), credit(c), beg_week(bw), last_week(lw), limits(lm), prereq(p), succeed(s) {}
     ClassInfo(const ClassInfo &cp)
-        : course_basic_ID(cp.course_basic_ID), course_sp_ID(cp.course_sp_ID), course_name(cp.course_name), teacher(cp.teacher), department(cp.department), semester(cp.semester), category(cp.category), times(cp.times), credit(cp.credit), beg_week(cp.beg_week), last_week(cp.last_week), limits(cp.limits), prereq(cp.prereq) {}
+        : course_basic_ID(cp.course_basic_ID), course_sp_ID(cp.course_sp_ID), course_name(cp.course_name), teacher(cp.teacher), department(cp.department), semester(cp.semester), category(cp.category), times(cp.times), credit(cp.credit), beg_week(cp.beg_week), last_week(cp.last_week), limits(cp.limits), prereq(cp.prereq), succeed(cp.succeed) {}
     ~ClassInfo() = default;
 
     void display() const
@@ -79,6 +81,7 @@ public:
             qDebug() << " " << prereq[i];
         }
         qDebug() << "]";
+        qDebug() << "Succeed: " << succeed;
     }
 
     bool operator<(const ClassInfo& b) const

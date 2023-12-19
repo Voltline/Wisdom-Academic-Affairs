@@ -81,10 +81,11 @@ vector<ClassInfo> CourseDatabase::get_all_class_info()
         for (const auto& rec : pre) {
             prereq.push_back(rec[2].toString());
         }
+        QString succeed{course_info[0][12].toString()};
 
         ans_set.push_back(ClassInfo{basic_ID, sp_ID, name, teacher,
                                     dept, seme, cate, cp, credit,
-                                     beg_w, last_w, lm, prereq});
+                                     beg_w, last_w, lm, prereq, succeed});
     }
     return ans_set;
 }
@@ -135,10 +136,11 @@ vector<ClassInfo> CourseDatabase::get_one_class_info(const QString& course_basic
         for (const auto& rec : pre) {
             prereq.push_back(rec[2].toString());
         }
+        QString succeed{course_info[0][12].toString()};
 
         ans_set.push_back(ClassInfo{basic_ID, sp_ID, name, teacher,
                                     dept, seme, cate, cp, credit,
-                                     beg_w, last_w, lm, prereq});
+                                     beg_w, last_w, lm, prereq, succeed});
     }
     return ans_set;
 }
@@ -190,9 +192,11 @@ vector<ClassInfo> CourseDatabase::get_class_from_dept(const QString& dept)
             prereq.push_back(rec[2].toString());
         }
 
+        QString succeed{course_info[0][9].toString()};
+
         ans_set.push_back(ClassInfo{basic_ID, sp_ID, name, teacher,
                                     dept, seme, cate, cp, credit,
-                                     beg_w, last_w, lm, prereq});
+                                     beg_w, last_w, lm, prereq, succeed});
     }
     return ans_set;
 }
