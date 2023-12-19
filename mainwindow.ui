@@ -697,9 +697,9 @@
     <widget class="QLineEdit" name="lineEdit">
      <property name="geometry">
       <rect>
-       <x>670</x>
+       <x>630</x>
        <y>30</y>
-       <width>131</width>
+       <width>171</width>
        <height>21</height>
       </rect>
      </property>
@@ -734,7 +734,7 @@
     <widget class="QLabel" name="label_15">
      <property name="geometry">
       <rect>
-       <x>570</x>
+       <x>530</x>
        <y>30</y>
        <width>91</width>
        <height>21</height>
@@ -806,7 +806,8 @@ background-color: rgb(52, 61, 120);</string>
        <property name="styleSheet">
         <string notr="true">color: rgb(255, 255, 255);
 background-color: rgb(48, 149, 255);
-border-radius: 25px;</string>
+border-radius: 25px;
+</string>
        </property>
        <property name="text">
         <string>培养方案</string>
