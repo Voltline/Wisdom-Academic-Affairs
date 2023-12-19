@@ -1,6 +1,7 @@
 ﻿#include "dbhandler.h"
 #include "dbexceptions.h"
 #include <QDebug>
+#include <utility>
 
 const QString DatabaseHandler::database_name = "Lighthouse-Server";
 const QString DatabaseHandler::hostname = "124.223.215.89";
@@ -10,9 +11,9 @@ const int DatabaseHandler::port = 10080;
 
 DatabaseHandler::DatabaseHandler()
 {
-    if (QSqlDatabase::contains("mysql"))
+    if (QSqlDatabase::contains("qt_sql_default_connection"))
     {
-        _db = QSqlDatabase::database("mysql");
+        _db = QSqlDatabase::database("qt_sql_default_connection");
     }
     else {
         _db = QSqlDatabase::addDatabase("QODBC");
@@ -54,7 +55,9 @@ DatabaseHandler::DatabaseHandler(DatabaseHandler&& db_handler) noexcept
 
 DatabaseHandler::~DatabaseHandler()
 {
+    const QString connectionName = _db.connectionName();
     _db.close();
+    _db = QSqlDatabase::database();
     is_open = false;
 }
 
