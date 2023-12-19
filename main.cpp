@@ -39,8 +39,8 @@ int main(int argc, char *argv[])
     */
     //测试数据库
 //    auto ans{ cdb.get_one_class_info("COMS0031121009") };
-    auto ans{cdb.get_class_from_dept("测试数据1")};
-//    auto ans{cdb.get_class_from_dept("计算机科学与技术学院")};
+//    auto ans{cdb.get_class_from_dept("测试数据1")};
+    auto ans{cdb.get_class_from_dept("计算机科学与技术学院")};
     for (const auto& l : ans)
     {
 //        l.display();

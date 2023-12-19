@@ -296,8 +296,8 @@ void MainWindow::on_lineEdit_editingFinished()
     if(selectedRows.size())
     {
         selectionModel->clear();
-        selectionModel->select(indexToSelect, QItemSelectionModel::Select | QItemSelectionModel::Rows);
     }
+    selectionModel->select(indexToSelect, QItemSelectionModel::Select | QItemSelectionModel::Rows);
     ui->Plan_2->scrollTo(indexToSelect);
 }
 
@@ -323,5 +323,29 @@ void MainWindow::on_pushButton_sov2_pressed()
 void MainWindow::on_pushButton_sov2_released()
 {
     ui->pushButton_sov2->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(48, 149, 255); border-radius: 25px;");
+}
+
+
+void MainWindow::on_pushButton_sov2_clicked()
+{
+    std::map<QString, CourseSystem::Course> courses;
+    for(auto courseinfo : ans_set)
+    {
+        courses[courseinfo.course_basic_ID].push_teacherCourse(courseinfo);
+    }
+    vector<CourseSystem::Course> vec;
+    for(auto [x,y]: courses)
+    {
+        vec.push_back(y);
+    }
+    //更新候选词列表
+    trie = new Trie();
+    for(auto x : vec)
+    {
+        trie->insert(0, x.get_course_name());
+    }
+
+    auto topans = DataStructureAlgorithm::TopSort(vec, {}, 0).sov();
+    updateAnsTableView(topans);
 }
 

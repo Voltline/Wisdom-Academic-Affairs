@@ -84,24 +84,26 @@ namespace DataStructureAlgorithm
         while (que.size())
         {
             ++turn;
-            // qDebug() << "begin" << turn << endl;
+             qDebug() << "begin" << turn;
 
             vector<Course> node_now;
             while (que.size())
             {
-                courses[que.front() - 1].priority++;
-                node_now.push_back(courses[que.front() - 1]);
+                int x = que.front() - 1;
+//                qDebug() << x << courses[x].get_course_name() << " " << courses[x].priority;
                 que.pop_front();
+                courses[x].priority++;
+                node_now.push_back(courses[x]);
             }
             // 奇数学期优先Spring 偶数学期优先Fall 并且按优先级进行计算
             if (turn & 1)
                 sort(node_now.begin(), node_now.end());
             else
                 sort(node_now.begin(), node_now.end(), std::greater<Course>());
-            // for (auto it : node_now)
-            // {
-            //     qDebug() << it.get_course_name() << " " << it.priority << " " << it.get_semester();
-            // }
+             for (auto it : node_now)
+             {
+                 qDebug() << it.get_course_name() << " " << it.priority << " " << it.get_semester();
+             }
             vector<int> vec;
             vector<int> to_del;
             for (auto course : node_now)
@@ -113,10 +115,13 @@ namespace DataStructureAlgorithm
                     // 选课后 直接而后继增加
                     for (auto it : course.get_nxtrequisites())
                     {
-                        // qDebug() << "nxt" << course.get_course_name() << " " << it;
                         int y = id_map[it];
+                        qDebug() << "nxt" << course.get_course_name() << " " << it << " " << y;
                         if (y)
-                            courses[y - 1].priority++;
+                        {
+                            courses[y - 1].priority+=2;
+                            qDebug() << courses[y-1].get_course_name() << " " << courses[y-1].priority;
+                        }
                     }
                 }
                 else
@@ -139,6 +144,7 @@ namespace DataStructureAlgorithm
                     }
                 }
             }
+            qDebug() << "end";
         }
     }
     bool TopSort::judge(vector<int> now, int new_course_id, double max_credit)

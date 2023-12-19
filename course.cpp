@@ -17,6 +17,25 @@ namespace CourseSystem
         push_teacherCourse(TeacherCourse(cInfo.course_sp_ID, cInfo.teacher, cInfo.limits, multiCourseTime(cInfo.times)));
     }
 
+    Course::Course(const Course &Course)
+    {
+        course_basic_ID = Course.course_basic_ID;
+        course_name = Course.course_name;
+        department = Course.department;
+        semester = Course.semester;
+        credit = Course.credit;
+        category = Course.category;
+        prereq = Course.prereq;
+        nxtreq = vector<QString>();
+        if (!Course.nxtreq.empty())
+            nxtreq.push_back(Course.nxtreq[0]);
+        priority = Course.priority;
+        for (auto teacherCourse : Course.teacherCourses)
+        {
+            push_teacherCourse(teacherCourse);
+        }
+    }
+
     Course &Course::operator=(const Course &Course)
     {
         course_basic_ID = Course.course_basic_ID;
@@ -25,8 +44,9 @@ namespace CourseSystem
         semester = Course.semester;
         credit = Course.credit;
         category = Course.category;
-        prereq = Course.prereq; 
+        prereq = Course.prereq;
         nxtreq = Course.nxtreq;
+        priority = Course.priority;
         // 老师课程
         for (auto teacherCourse : Course.teacherCourses)
         {

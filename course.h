@@ -14,8 +14,9 @@ namespace CourseSystem
     public:
         Course() = default;
         Course(ClassInfo cInfo);
+        Course(const Course &Course);
+        Course& operator=(const Course &Course);
         // 插入一个教师上课信息
-        Course &operator=(const Course &teacherCourse);
         Course &push_teacherCourse(const TeacherCourse &teacherCourse);
         Course &push_teacherCourse(ClassInfo cInfo);
         const QString &get_course_basic_ID() const { return course_basic_ID; }
