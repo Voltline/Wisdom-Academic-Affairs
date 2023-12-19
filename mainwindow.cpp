@@ -225,3 +225,27 @@ void MainWindow::on_pushButton_sov1_clicked()
 
 }
 
+
+void MainWindow::on_pushButton_sov1_pressed()
+{
+    ui->pushButton_sov1->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(48, 79, 255); border-radius: 25px;");
+}
+
+
+void MainWindow::on_pushButton_sov1_released()
+{
+    ui->pushButton_sov1->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(48, 149, 255); border-radius: 25px;");
+}
+
+
+void MainWindow::on_pushButton_sov2_pressed()
+{
+    ui->pushButton_sov2->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(48, 79, 255); border-radius: 25px;");
+}
+
+
+void MainWindow::on_pushButton_sov2_released()
+{
+    ui->pushButton_sov2->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(48, 149, 255); border-radius: 25px;");
+}
+

@@ -40,6 +40,14 @@ private slots:
     void on_aboutButton_clicked();
     void on_pushButton_sov1_clicked();
 
+    void on_pushButton_sov1_pressed();
+
+    void on_pushButton_sov1_released();
+
+    void on_pushButton_sov2_pressed();
+
+    void on_pushButton_sov2_released();
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel showClassTableModel;
