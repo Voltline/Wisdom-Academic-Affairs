@@ -1,6 +1,7 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "coursedatabase.h"
+#include <algorithm>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,22 +29,25 @@ void MainWindow::updateClassTableView(const QString& dept)
     vector<ClassInfo> ans_set;
     if (dept == "...") ans_set = cdb.get_all_class_info();
     else ans_set = cdb.get_class_from_dept(dept);
+    std::sort(ans_set.begin(), ans_set.end());
     showClassTableModel.clear();
     showClassTableModel.setHorizontalHeaderLabels(
-                {"课程序号","课程名称","课程类别",
+                {"学期", "课程序号","课程名称","课程类别",
                  "开课院系", "教师", "排课安排",
                  "学分", "人数上限"});
     for (size_t i = 0; i < ans_set.size(); i++)
     {
         showClassTableModel.setItem(i, 0,
-           new QStandardItem{ans_set[i].course_basic_ID+"."+ans_set[i].course_sp_ID});
+           new QStandardItem{(ans_set[i].semester == "Fall") ? "第一学期" : "第二学期"});
         showClassTableModel.setItem(i, 1,
-           new QStandardItem{ans_set[i].course_name});
+           new QStandardItem{ans_set[i].course_basic_ID+"."+ans_set[i].course_sp_ID});
         showClassTableModel.setItem(i, 2,
-           new QStandardItem{ans_set[i].category});
+           new QStandardItem{ans_set[i].course_name});
         showClassTableModel.setItem(i, 3,
-           new QStandardItem{ans_set[i].department});
+           new QStandardItem{ans_set[i].category});
         showClassTableModel.setItem(i, 4,
+           new QStandardItem{ans_set[i].department});
+        showClassTableModel.setItem(i, 5,
            new QStandardItem{ans_set[i].teacher});
         QString time_period;
         auto times = ans_set[i].times;
@@ -53,10 +57,10 @@ void MainWindow::updateClassTableView(const QString& dept)
                                  + "-" + QString::number(times[j].beg + times[j].last - 1);
             if (times.size() != 1 && j != times.size() - 1) time_period += '\n';
         }
-        showClassTableModel.setItem(i, 5, new QStandardItem{time_period});
-        showClassTableModel.setItem(i, 6,
-           new QStandardItem{QString::number(ans_set[i].credit, 'f', 1)});
+        showClassTableModel.setItem(i, 6, new QStandardItem{time_period});
         showClassTableModel.setItem(i, 7,
+           new QStandardItem{QString::number(ans_set[i].credit, 'f', 1)});
+        showClassTableModel.setItem(i, 8,
            new QStandardItem{QString::number(ans_set[i].limits)});
     }
     ui->classTable->setModel(&showClassTableModel);
@@ -66,6 +70,7 @@ void MainWindow::updateClassTableView(const QString& dept)
 void MainWindow::on_QuitButton_clicked()
 {
     this->close();
+    exit(0);
 }
 
 
