@@ -26,6 +26,7 @@ namespace CourseSystem
         double get_credit() const { return credit; }
         const vector<TeacherCourse> &get_teacherCourse() const { return teacherCourses; }
         const vector<QString> get_prerequisites() const { return prereq; }
+        const vector<QString> get_nxtrequisites() const { return nxtreq; }
         void debug();
         friend bool operator<(const Course &c1, const Course &c2);
         friend bool operator>(const Course &c1, const Course &c2);

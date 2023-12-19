@@ -93,12 +93,12 @@ namespace DataStructureAlgorithm
                 node_now.push_back(courses[que.front() - 1]);
                 que.pop_front();
             }
-            //奇数学期优先Spring 偶数学期优先Fall 并且按优先级进行计算
+            // 奇数学期优先Spring 偶数学期优先Fall 并且按优先级进行计算
             if (turn & 1)
                 sort(node_now.begin(), node_now.end());
             else
                 sort(node_now.begin(), node_now.end(), std::greater<Course>());
-            for(auto it : node_now)
+            for (auto it : node_now)
             {
                 qDebug() << it.get_course_name() << " " << it.priority << " " << it.get_semester();
             }
@@ -108,9 +108,20 @@ namespace DataStructureAlgorithm
             {
                 int x = id_map[course.get_course_basic_ID()];
                 if (judge(vec, x, turn > max_credit.size() ? 100000 : max_credit[turn - 1]))
+                {
                     vec.push_back(x);
+                    // 选课后 直接而后继增加
+                    for (auto it : course.get_nxtrequisites())
+                    {
+                        int y = id_map[it];
+                        if (y)
+                            courses[y - 1].priority++;
+                    }
+                }
                 else
+                {
                     to_del.push_back(x);
+                }
             }
             ans.push_back(vec);
             for (auto it = to_del.rbegin(); it != to_del.rend(); ++it)

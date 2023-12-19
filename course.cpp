@@ -10,6 +10,9 @@ namespace CourseSystem
         credit = cInfo.credit;
         category = cInfo.category;
         prereq = cInfo.prereq;
+        nxtreq = vector<QString>();
+        if (!cInfo.succeed.isEmpty())
+            nxtreq.push_back(cInfo.succeed);
         priority = 0;
         push_teacherCourse(TeacherCourse(cInfo.course_sp_ID, cInfo.teacher, cInfo.limits, multiCourseTime(cInfo.times)));
     }
