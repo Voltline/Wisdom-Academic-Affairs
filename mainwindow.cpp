@@ -274,10 +274,31 @@ void MainWindow::on_lineEdit_textEdited(const QString &arg1)
 
 void MainWindow::on_lineEdit_editingFinished()
 {
+    auto Str = ui->lineEdit->text();
     QItemSelectionModel *selectionModel = ui->Plan_2->selectionModel();
     // 获取所有选中的行
     QModelIndexList selectedRows = selectionModel->selectedRows();
-
+    int rowToSelect = 0;
+    if(selectedRows.size())
+        rowToSelect = selectedRows.at(0).row();
+    for (int row = 0; row < showAnsTableModel.rowCount(); ++row)
+    {
+        QStandardItem *item = showAnsTableModel.item(row, 2);
+        if(item)
+        {
+            QString text = item->text();
+//            qDebug() << text;
+            if(text == Str)
+                rowToSelect = row;
+        }
+    }
+    QModelIndex indexToSelect = showAnsTableModel.index(rowToSelect, 0);
+    if(selectedRows.size())
+    {
+        selectionModel->clear();
+        selectionModel->select(indexToSelect, QItemSelectionModel::Select | QItemSelectionModel::Rows);
+    }
+    ui->Plan_2->scrollTo(indexToSelect);
 }
 
 
