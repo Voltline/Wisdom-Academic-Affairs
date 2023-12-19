@@ -80,4 +80,12 @@ public:
         }
         qDebug() << "]";
     }
+
+    bool operator<(const ClassInfo& b) const
+    {
+        if (course_basic_ID != b.course_basic_ID) return course_basic_ID < b.course_basic_ID;
+        else {
+            return course_sp_ID < b.course_sp_ID;
+        }
+    }
 };
