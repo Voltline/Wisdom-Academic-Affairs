@@ -300,7 +300,17 @@
        <string notr="true">color: rgb(0, 126, 249);</string>
       </property>
       <property name="text">
-       <string>全校开课查询</string>
+       <string> 全校开课查询</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icon.qrc">
+        <normaloff>:/back/allsearch.png</normaloff>:/back/allsearch.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
       </property>
       <property name="autoDefault">
        <bool>false</bool>
@@ -330,7 +340,17 @@
        <string notr="true">color: rgb(0, 126, 249);</string>
       </property>
       <property name="text">
-       <string>选课方案查询</string>
+       <string> 选课方案查询</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icon.qrc">
+        <normaloff>:/back/plan.png</normaloff>:/back/plan.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
       </property>
       <property name="autoDefault">
        <bool>false</bool>
