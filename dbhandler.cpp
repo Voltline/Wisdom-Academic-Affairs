@@ -5,7 +5,7 @@
 
 const QString DatabaseHandler::database_name = "Lighthouse-Server";
 const QString DatabaseHandler::hostname = "124.223.215.89";
-const QString DatabaseHandler::username = "waa_admin";
+const QString DatabaseHandler::username = "waa_user";
 const QString DatabaseHandler::password = "";
 const int DatabaseHandler::port = 10080;
 
