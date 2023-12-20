@@ -6,6 +6,7 @@
 #include <QtWinExtras/QtWin>
 #include <QtConcurrent/QtConcurrent>
 #include <QCompleter>
+#include <QMessageBox>
 #include "ui_mainwindow.h"
 #include "coursedatabase.h"
 #include "CourseSystem.h"

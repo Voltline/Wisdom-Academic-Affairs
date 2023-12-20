@@ -14,7 +14,7 @@ namespace DataStructureAlgorithm
                     sum_limits += x.get_limits();
                 }
                 if (sum_limits < limits)
-                    throw AlgorithmException::TopsortException((course.get_course_basic_ID().toStdString() + "'s limits < min_limits").c_str());
+                    throw AlgorithmException::TopsortException(("课程" + course.get_course_basic_ID().toStdString() + "的总课程人数不足").c_str());
             }
         }
         this->courses = courses;

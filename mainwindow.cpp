@@ -256,10 +256,12 @@ void MainWindow::on_pushButton_sov1_clicked()
     credit.push_back(ui->doubleSpinBox_10->value());
     int limit = ui->spinBox->value();
     //
-
-    auto topans = DataStructureAlgorithm::TopSort(vec, credit, limit).sov();
-    updateAnsTableView(topans);
-
+    try {
+        auto topans = DataStructureAlgorithm::TopSort(vec, credit, limit).sov();
+        updateAnsTableView(topans);
+    }  catch (const std::exception& e) {
+        QMessageBox::information(nullptr, "oops 出错了", e.what());
+    }
 }
 
 
