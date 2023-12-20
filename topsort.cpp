@@ -87,7 +87,7 @@ namespace DataStructureAlgorithm
         while (que.size())
         {
             ++turn;
-            qDebug() << "begin" << turn;
+            // qDebug() << "begin" << turn;
 
             vector<Course> node_now;
             while (que.size())
@@ -103,10 +103,10 @@ namespace DataStructureAlgorithm
                 sort(node_now.begin(), node_now.end());
             else
                 sort(node_now.begin(), node_now.end(), std::greater<Course>());
-            for (auto it : node_now)
-            {
-                qDebug() << it.get_course_name() << " " << it.priority << " " << it.get_semester();
-            }
+            // for (auto it : node_now)
+            // {
+            //     qDebug() << it.get_course_name() << " " << it.priority << " " << it.get_semester();
+            // }
             vector<int> vec;
             vector<int> to_del;
             for (auto course : node_now)
@@ -119,7 +119,7 @@ namespace DataStructureAlgorithm
                     for (auto it : course.get_nxtrequisites())
                     {
                         int y = id_map[it];
-                        qDebug() << "nxt" << course.get_course_name() << " " << it << " " << y;
+                        // qDebug() << "nxt" << course.get_course_name() << " " << it << " " << y;
                         if (y)
                         {
                             courses[y - 1].priority += 2;
@@ -147,7 +147,7 @@ namespace DataStructureAlgorithm
                     }
                 }
             }
-            qDebug() << "end";
+            // qDebug() << "end";
         }
     }
     bool TopSort::judge(vector<int> now, int new_course_id, double max_credit)
