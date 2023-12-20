@@ -781,7 +781,7 @@ background-color: rgb(52, 61, 120);</string>
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>400</height>
+        <height>379</height>
        </rect>
       </property>
       <attribute name="label">
@@ -850,7 +850,7 @@ border-radius: 25px;</string>
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>400</height>
+        <height>379</height>
        </rect>
       </property>
       <attribute name="label">
@@ -862,7 +862,7 @@ border-radius: 25px;</string>
          <x>1</x>
          <y>1</y>
          <width>211</width>
-         <height>29</height>
+         <height>30</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -929,7 +929,7 @@ border-radius: 25px;</string>
          <x>0</x>
          <y>40</y>
          <width>211</width>
-         <height>29</height>
+         <height>30</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -996,7 +996,7 @@ border-radius: 25px;</string>
          <x>0</x>
          <y>80</y>
          <width>211</width>
-         <height>29</height>
+         <height>30</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_6">
@@ -1063,7 +1063,7 @@ border-radius: 25px;</string>
          <x>0</x>
          <y>120</y>
          <width>211</width>
-         <height>29</height>
+         <height>30</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -1130,7 +1130,7 @@ border-radius: 25px;</string>
          <x>0</x>
          <y>160</y>
          <width>211</width>
-         <height>29</height>
+         <height>30</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_8">
@@ -1197,7 +1197,7 @@ border-radius: 25px;</string>
          <x>0</x>
          <y>200</y>
          <width>211</width>
-         <height>29</height>
+         <height>30</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_9">
@@ -1264,7 +1264,7 @@ border-radius: 25px;</string>
          <x>0</x>
          <y>240</y>
          <width>211</width>
-         <height>29</height>
+         <height>30</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_10">
@@ -1331,7 +1331,7 @@ border-radius: 25px;</string>
          <x>0</x>
          <y>280</y>
          <width>211</width>
-         <height>29</height>
+         <height>30</height>
         </rect>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_12">
@@ -1399,7 +1399,7 @@ border-radius: 25px;</string>
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>400</height>
+        <height>379</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1505,10 +1505,55 @@ border-radius: 25px;</string>
     <widget class="QLabel" name="label_14">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>50</x>
+       <y>40</y>
+       <width>141</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+       <pointsize>24</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>关于我们</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_16">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>270</y>
+       <width>561</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑 Light</family>
+       <pointsize>15</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>本项目全名为&lt;a href = https://github.com/Voltline/Wisdom-Academic-Affairs&gt;Wisdom Academic Affairs&lt;/a&gt; ，
+基于MIT协议开源</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_23">
+     <property name="geometry">
+      <rect>
+       <x>680</x>
        <y>20</y>
-       <width>111</width>
-       <height>71</height>
+       <width>81</width>
+       <height>91</height>
       </rect>
      </property>
      <property name="font">
@@ -1517,17 +1562,20 @@ border-radius: 25px;</string>
        <pointsize>15</pointsize>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">image: url(:/back/waa_icon.png);</string>
+     </property>
      <property name="text">
-      <string>关于我们</string>
+      <string/>
      </property>
     </widget>
    </widget>
    <zorder>Left</zorder>
    <zorder>frame</zorder>
    <zorder>frame_2</zorder>
-   <zorder>AboutFrame</zorder>
    <zorder>ClassTable</zorder>
    <zorder>Plan</zorder>
+   <zorder>AboutFrame</zorder>
   </widget>
  </widget>
  <resources>

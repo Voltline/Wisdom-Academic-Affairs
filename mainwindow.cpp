@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Plan->setVisible(false);
     ui->classTable->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //自动设置行高
     ui->classTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);//自动设置列宽
+    ui->Plan_2->verticalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //自动设置行高
+    ui->Plan_2->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);//自动设置列宽
     ui->AllClassLabel->setVisible(false);
     ui->PlanLabel->setVisible(false);
     ui->MainPageLabel->setVisible(false);
@@ -93,7 +95,7 @@ void MainWindow::updateAnsTableView(const vector<vector<CourseSystem::Course> > 
 {
     showAnsTableModel.clear();
     showAnsTableModel.setHorizontalHeaderLabels(
-                {"学期", "课程序号","课程名称"});
+                {"学期", "课程序号","课程名称", "学分"});
     int cnt = 0;
     int cnt_item=0;
     for(auto line : courses)
@@ -107,6 +109,8 @@ void MainWindow::updateAnsTableView(const vector<vector<CourseSystem::Course> > 
                new QStandardItem{course.get_course_basic_ID()});
             showAnsTableModel.setItem(cnt_item, 2,
                new QStandardItem{course.get_course_name()});
+            showAnsTableModel.setItem(cnt_item, 3,
+               new QStandardItem{QString::number(course.get_credit(), 'f', 1)});
             ++cnt_item;
         }
     }
@@ -347,5 +351,16 @@ void MainWindow::on_pushButton_sov2_clicked()
 
     auto topans = DataStructureAlgorithm::TopSort(vec, {}, 0).sov();
     updateAnsTableView(topans);
+}
+
+void MainWindow::openUrl(QString url)
+{
+    QDesktopServices::openUrl(QUrl(url));
+
+}
+
+void MainWindow::on_label_16_linkActivated(const QString &link)
+{
+    openUrl(link);
 }
 

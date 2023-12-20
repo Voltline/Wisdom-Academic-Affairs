@@ -12,6 +12,7 @@
 #include "topsort.h"
 #include "trie.h"
 #include <algorithm>
+#include <QDesktopServices>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -28,6 +29,7 @@ protected:
     void mouseMoveEvent(QMouseEvent* event);
     void mousePressEvent(QMouseEvent* event);
     void mouseReleaseEvent(QMouseEvent* event);
+    void openUrl(QString url);
 
 private slots:
     void updateClassTableView(const QString& dept = "");
@@ -37,21 +39,17 @@ private slots:
     void on_testbutton_clicked();
     void on_testbutton_2_clicked();
     void on_comboBox_activated(const QString &arg1 = "");
-
     void on_testbutton_3_clicked();
     void on_aboutButton_clicked();
     void on_pushButton_sov1_clicked();
     void on_lineEdit_editingFinished();
     void on_lineEdit_textEdited(const QString &arg1);
     void on_pushButton_sov1_pressed();
-
     void on_pushButton_sov1_released();
-
     void on_pushButton_sov2_pressed();
-
     void on_pushButton_sov2_released();
-
     void on_pushButton_sov2_clicked();
+    void on_label_16_linkActivated(const QString &link);
 
 private:
     Ui::MainWindow *ui;
