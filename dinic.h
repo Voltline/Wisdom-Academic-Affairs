@@ -30,7 +30,7 @@ namespace DataStructureAlgorithm
         int n, m, s, t;
         int maxn, maxm;
         int maxflow;
-        const static int INF = 0x3f3f3f3f;
+        const static int INF = 10000;
         void build();
         bool bfs();
         int dinic(int x, int flow);

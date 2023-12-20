@@ -1,7 +1,12 @@
 #include "course.h"
 namespace CourseSystem
 {
-    Course::Course(ClassInfo cInfo)
+    Course::Course(ClassInfo cInfo) : must_map{{{"专业必修", true},
+                                                {"学科基础课", true},
+                                                {"专业任意选修", false},
+                                                {"必修", true},
+                                                {"师范生基础平台课", true},
+                                                {"1", true}}}
     {
         course_basic_ID = cInfo.course_basic_ID;
         course_name = cInfo.course_name;
@@ -17,7 +22,12 @@ namespace CourseSystem
         push_teacherCourse(TeacherCourse(cInfo.course_sp_ID, cInfo.teacher, cInfo.limits, multiCourseTime(cInfo.times)));
     }
 
-    Course::Course(const Course &Course)
+    Course::Course(const Course &Course) : must_map{{{"专业必修", true},
+                                                     {"学科基础课", true},
+                                                     {"专业任意选修", false},
+                                                     {"必修", true},
+                                                     {"师范生基础平台课", true},
+                                                     {"1", true}}}
     {
         course_basic_ID = Course.course_basic_ID;
         course_name = Course.course_name;
@@ -52,6 +62,12 @@ namespace CourseSystem
         {
             push_teacherCourse(teacherCourse);
         }
+        must_map = {{"专业必修", true},
+                    {"学科基础课", true},
+                    {"专业任意选修", false},
+                    {"必修", true},
+                    {"师范生基础平台课", true},
+                    {"1", true}};
         return *this;
     }
 
@@ -68,7 +84,8 @@ namespace CourseSystem
                  << department << "\n"
                  << semester << "\n"
                  << category << "\n"
-                 << credit;
+                 << credit << "\n"
+                 << get_must();
         for (auto x : prereq)
             qDebug() << x << " ";
         for (auto x : teacherCourses)
@@ -94,6 +111,12 @@ namespace CourseSystem
         category = cInfo.category;
         prereq = cInfo.prereq;
         nxtreq = vector<QString>();
+        must_map = {{"专业必修", true},
+                    {"学科基础课", true},
+                    {"专业任意选修", false},
+                    {"必修", true},
+                    {"师范生基础平台课", true},
+                    {"1", true}};
         if (!cInfo.succeed.isEmpty())
             nxtreq.push_back(cInfo.succeed);
     }

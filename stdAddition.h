@@ -16,8 +16,4 @@ namespace std
         }
     };
 }
-namespace std
-{
-
-}
 #endif // STDADDITION_H

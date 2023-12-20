@@ -21,7 +21,7 @@ namespace DataStructureAlgorithm
         }
         ++maxn;
         maxn = maxn * 2; // 拆点 所以2n
-        t = n+2;
+        t = n + 2;
         maxm = maxn * maxn; // 按完全图 计算
         head = vector<int>(maxn);
         ver = vector<int>(maxm);
@@ -31,12 +31,13 @@ namespace DataStructureAlgorithm
     }
     int Dinic::sov()
     {
-        if(courses.empty()) return 0;
+        if (courses.empty())
+            return 0;
         build();
         int flow = 0;
-        while(bfs())
+        while (bfs())
         {
-            while(flow = dinic(s, INF))
+            while (flow = dinic(s, INF))
                 maxflow += flow;
         }
         return maxflow;
@@ -56,7 +57,7 @@ namespace DataStructureAlgorithm
             {
                 add(course_id[from.get_course_basic_ID() + teachercourse.get_spid()],
                     course_id[from.get_course_basic_ID() + teachercourse.get_spid()] ^ 1,
-                    teachercourse.get_limits());
+                    courses[i].get_must() ? teachercourse.get_limits() : INF);
                 add(course_id[from.get_course_basic_ID() + teachercourse.get_spid()] ^ 1,
                     course_id[from.get_course_basic_ID() + teachercourse.get_spid()],
                     0);
@@ -174,7 +175,7 @@ namespace DataStructureAlgorithm
     }
     void Dinic::add(int x, int y, int z)
     {
-//         qDebug() << x <<  " " << y << " " << z;
+        //         qDebug() << x <<  " " << y << " " << z;
         ver[++tot] = y;
         edge[tot] = z;
         nxt[tot] = head[x];

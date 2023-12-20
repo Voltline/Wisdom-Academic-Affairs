@@ -7,12 +7,15 @@ namespace DataStructureAlgorithm
         for (auto course : courses)
         {
             int sum_limits = 0;
-            for (auto x : course.get_teacherCourse())
+            if (course.get_must())
             {
-                sum_limits += x.get_limits();
+                for (auto x : course.get_teacherCourse())
+                {
+                    sum_limits += x.get_limits();
+                }
+                if (sum_limits < limits)
+                    throw AlgorithmException::TopsortException((course.get_course_basic_ID().toStdString() + "'s limits < min_limits").c_str());
             }
-            if (sum_limits < limits)
-                throw AlgorithmException::TopsortException((course.get_course_basic_ID().toStdString() + "'s limits < min_limits").c_str());
         }
         this->courses = courses;
         n = courses.size();
@@ -84,13 +87,13 @@ namespace DataStructureAlgorithm
         while (que.size())
         {
             ++turn;
-             qDebug() << "begin" << turn;
+            qDebug() << "begin" << turn;
 
             vector<Course> node_now;
             while (que.size())
             {
                 int x = que.front() - 1;
-//                qDebug() << x << courses[x].get_course_name() << " " << courses[x].priority;
+                //                qDebug() << x << courses[x].get_course_name() << " " << courses[x].priority;
                 que.pop_front();
                 courses[x].priority++;
                 node_now.push_back(courses[x]);
@@ -100,10 +103,10 @@ namespace DataStructureAlgorithm
                 sort(node_now.begin(), node_now.end());
             else
                 sort(node_now.begin(), node_now.end(), std::greater<Course>());
-             for (auto it : node_now)
-             {
-                 qDebug() << it.get_course_name() << " " << it.priority << " " << it.get_semester();
-             }
+            for (auto it : node_now)
+            {
+                qDebug() << it.get_course_name() << " " << it.priority << " " << it.get_semester();
+            }
             vector<int> vec;
             vector<int> to_del;
             for (auto course : node_now)
@@ -119,8 +122,8 @@ namespace DataStructureAlgorithm
                         qDebug() << "nxt" << course.get_course_name() << " " << it << " " << y;
                         if (y)
                         {
-                            courses[y - 1].priority+=2;
-                            qDebug() << courses[y-1].get_course_name() << " " << courses[y-1].priority;
+                            courses[y - 1].priority += 2;
+                            qDebug() << courses[y - 1].get_course_name() << " " << courses[y - 1].priority;
                         }
                     }
                 }
