@@ -123,7 +123,7 @@ namespace DataStructureAlgorithm
                         if (y)
                         {
                             courses[y - 1].priority += 2;
-                            qDebug() << courses[y - 1].get_course_name() << " " << courses[y - 1].priority;
+                            // qDebug() << courses[y - 1].get_course_name() << " " << courses[y - 1].priority;
                         }
                     }
                 }
