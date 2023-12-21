@@ -693,6 +693,9 @@
      <property name="styleSheet">
       <string notr="true">background-color: rgb(158, 161, 176);</string>
      </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
     </widget>
     <widget class="QLineEdit" name="lineEdit">
      <property name="geometry">
@@ -781,7 +784,7 @@ background-color: rgb(52, 61, 120);</string>
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>379</height>
+        <height>400</height>
        </rect>
       </property>
       <attribute name="label">
@@ -850,7 +853,7 @@ border-radius: 25px;</string>
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>379</height>
+        <height>400</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1399,7 +1402,7 @@ border-radius: 25px;</string>
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>379</height>
+        <height>400</height>
        </rect>
       </property>
       <attribute name="label">
@@ -1574,8 +1577,8 @@ border-radius: 25px;</string>
    <zorder>frame</zorder>
    <zorder>frame_2</zorder>
    <zorder>ClassTable</zorder>
-   <zorder>Plan</zorder>
    <zorder>AboutFrame</zorder>
+   <zorder>Plan</zorder>
   </widget>
  </widget>
  <resources>
