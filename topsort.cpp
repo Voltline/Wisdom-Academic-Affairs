@@ -158,6 +158,8 @@ namespace DataStructureAlgorithm
             vec.push_back(courses[x - 1]);
         auto new_course = courses[new_course_id - 1];
         int c_cnt = 0;
+        vector<Course> conflict;
+        conflict.push_back(new_course);
         for(auto x : vec)
         {
             bool judge = 0;
@@ -167,6 +169,7 @@ namespace DataStructureAlgorithm
                 {
                     if(!(tx.get_times()^ty.get_times()))
                     {
+                        conflict.push_back(x);
                         judge = 1;
                         break;
                     }
@@ -184,7 +187,7 @@ namespace DataStructureAlgorithm
         if (credit > max_credit)
             return false;
         //        qDebug() << "Dinic";
-        auto now_limits = Dinic(vec).sov();
+        auto now_limits = Dinic(conflict).sov();
         //        qDebug() << "finish judge";
         return now_limits >= limits;
     }

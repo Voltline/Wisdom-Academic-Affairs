@@ -351,7 +351,7 @@ void MainWindow::on_pushButton_sov2_clicked()
         trie->insert(0, x.get_course_name());
     }
 
-    auto topans = DataStructureAlgorithm::TopSort(vec, {}, 0).sov();
+    auto topans = DataStructureAlgorithm::TopSort(vec, {}, 1).sov();
     updateAnsTableView(topans);
 }
 

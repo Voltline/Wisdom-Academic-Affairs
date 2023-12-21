@@ -31,23 +31,23 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     CourseDatabase cdb;
-    /*测试 multiCourse的冲突检测 线段树
+    //测试 multiCourse的冲突检测 线段树
     multiCourseTime t1, t2;
-    t1.push_back(CourseTime(1, 1, 3));
-    t1.push_back(CourseTime(2, 1, 3));
-    t2.push_back(CourseTime(2, 2, 5));
+    t1.push_back(CourseTime(1, 3, 4));
+    t1.push_back(CourseTime(3, 1, 2));
+    t2.push_back(CourseTime(1, 1, 3));
     qDebug() << (t1^t2);
-    */
+
     //测试数据库
 //    auto ans{ cdb.get_one_class_info("COMS0031132077") };
-    auto ans{cdb.get_class_from_dept("测试数据3")};
+    auto ans{cdb.get_class_from_dept("测试数据5")};
 //    auto ans{cdb.get_class_from_dept("计算机科学与技术学院")};
 //    for (const auto& l : ans)
 //    {
 //        l.display();
 //    }
     //测试ClassSystem
-    /*
+
     std::map<QString, CourseSystem::Course> courses;
     for(auto courseinfo : ans)
     {
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
         vec.push_back(y);
 //        y.debug();
     }
-    */
+
     //测试topsort
     //推荐课程
 //    auto topans = TopSort(vec, {15, 15, 15, 15, 20, 20, 32, 32}, 10).sov();
@@ -79,11 +79,11 @@ int main(int argc, char *argv[])
     */
 
     //测试dinic
-    /*
+
     auto d = Dinic(vec);
     qDebug() << d.sov();
 //    d.debug();
-    */
+
     //测试EK
     /*
     auto E = EK(vec);
