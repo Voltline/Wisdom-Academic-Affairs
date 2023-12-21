@@ -19,15 +19,18 @@ namespace CourseSystem
         multiCourseTime() = default;
         multiCourseTime(const vector<ClassPeriod>&);
         void push_back(const CourseTime &course_time);
+        void erase(const CourseTime & course_time);
         friend bool judge_conflict(const multiCourseTime &course_time_1, const multiCourseTime &course_time_2);
         void debug();
-
-    private:
         vector<CourseSystem::CourseTime> course_times; // 课时组
+    private:
     };
     // 判断两个课的课时是否冲突
     bool judge_conflict(const multiCourseTime &course_time_1, const multiCourseTime &course_time_2);
     bool operator^(const multiCourseTime &course_time_1, const multiCourseTime &course_time_2);
+    multiCourseTime operator+(const multiCourseTime &course_time_1, const multiCourseTime &course_time_2);
+    multiCourseTime operator-(const multiCourseTime &course_time_1, const multiCourseTime &course_time_2);
+    multiCourseTime operator~(const multiCourseTime &course_time);
 } // namespace CourseSystem
 
 #endif // COURSESYSTEM_MULTICOURSETIME_H

@@ -14,6 +14,7 @@ SOURCES += \
     coursetime.cpp \
     dbhandler.cpp \
     dinic.cpp \
+    ek.cpp \
     fenwick_tree.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -34,6 +35,7 @@ HEADERS += \
     dbexceptions.h \
     dbhandler.h \
     dinic.h \
+    ek.h \
     fenwick_tree.h \
     mainwindow.h \
     multicoursetime.h \

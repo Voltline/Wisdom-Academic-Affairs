@@ -1,8 +1,8 @@
-#include "dinic.h"
+#include "ek.h"
 
 namespace DataStructureAlgorithm
 {
-    Dinic::Dinic(vector<Course> courses)
+    EK::EK(vector<Course> courses)
     {
         this->courses = courses;
         n = 0;
@@ -25,44 +25,37 @@ namespace DataStructureAlgorithm
         t = n + 2;
         maxm = maxn * maxn; // 按完全图 计算
         head = vector<int>(maxn);
+        v = vector<int>(maxn);
+        incf = vector<int>(maxn);
+        pre = vector<int>(maxn);
         ver = vector<int>(maxm);
+        reverse = vector<int>(maxm);
         edge = vector<int>(maxm);
         nxt = vector<int>(maxm);
+        edge_tm =vector<multiCourseTime>(maxm);
+        incf_tm =vector<multiCourseTime>(maxm);
         d = vector<int>(maxn);
     }
-    int Dinic::sov()
+    int EK::sov()
     {
         if (courses.empty())
             return 0;
         build();
-        int flow = 0;
         while (bfs())
         {
-            while (flow = dinic(s, INF))
-            {
-//                qDebug() << "flow" << flow;
-                maxflow += flow;
-            }
+            update();
         }
         return maxflow;
     }
 
-    void Dinic::debug()
+    void EK::debug()
     {
         for(auto [x,y] : course_id)
         {
             qDebug() << x << " " << y;
         }
-//        for(int x = s; x <= t; ++x)
-//        {
-//            for(int i = head[x]; i; i = nxt[i])
-//            {
-//                int y =ver[i];
-//                qDebug() << x << " " << y << " " << edge[i];
-//            }
-//        }
     }
-    void Dinic::build()
+    void EK::build()
     {
         // s是源点 是1 t是汇点 是maxn
         // 每个课程拆点 边权选课上限
@@ -94,10 +87,14 @@ namespace DataStructureAlgorithm
                     if(!(from_teachercourse.get_times() ^ to_teachercourse.get_times())) continue;
                     add(course_id[from.get_course_basic_ID() + from_teachercourse.get_spid()] ^ 1,
                         course_id[to.get_course_basic_ID() + to_teachercourse.get_spid()],
-                        INF);
+                        INF,
+                        1,
+                        to_teachercourse.get_times());
                     add(course_id[to.get_course_basic_ID() + to_teachercourse.get_spid()],
                         course_id[from.get_course_basic_ID() + from_teachercourse.get_spid()] ^ 1,
-                        0);
+                        0,
+                        1,
+                        ~to_teachercourse.get_times());
                 }
             }
         }
@@ -109,10 +106,14 @@ namespace DataStructureAlgorithm
             {
                 add(s,
                     course_id[from.get_course_basic_ID() + teachercourse.get_spid()],
-                    INF);
+                    INF,
+                    1,
+                    teachercourse.get_times());
                 add(course_id[from.get_course_basic_ID() + teachercourse.get_spid()],
                     s,
-                    0);
+                    0,
+                    1,
+                    ~teachercourse.get_times());
             }
         }
         // 添加汇点的边
@@ -130,37 +131,43 @@ namespace DataStructureAlgorithm
             }
         }
     }
-    bool Dinic::bfs()
+    bool EK::bfs()
     {
 //        qDebug() << "bfs begin" << endl;
-        // 初始化距离数组
-        d = vector<int>(maxn);
-        // 将队列q中的元素全部弹出
-        queue<int> q;
+        v = vector<int>(maxn, 0);
+        queue<std::pair<int,multiCourseTime> > q;
         // 将起点s压入队列q
-        q.push(s);
-        // 距离数组d中s的距离设置为1
-        d[s] = 1;
+        q.push({s, multiCourseTime()});
+        v[s] = 1;
+        incf[s] = INF;
+        incf_tm[s] = multiCourseTime();
         // 当队列q不为空时，循环
         while (q.size())
         {
             // 取出队列q中的第一个元素
-            int x = q.front();
-//            xtm.debug();
+            int x = q.front().first;
+            auto xtm = q.front().second;
             // 将该元素弹出队列q
             q.pop();
             // 遍历x的边
             for (int i = head[x]; i; i = nxt[i])
             {
                 bool judge = 1;
-                // 如果该边的边权不为0，且距离数组d中该边的距离为0
-                if (edge[i] && !d[ver[i]] && judge)
+                int y = ver[i];
+                multiCourseTime ytm = edge_tm[i];
+//                judge = xtm ^ ytm;
+                // 如果该边的边权不为0
+                if (edge[i] && !v[y] && judge)
                 {
+
+                    incf[y] = std::min(incf[x], edge[i]);
+                    incf_tm[y] = xtm + ytm;
+                    pre[y] = i;
                     // 将该边的终点压入队列q
-                    q.push(ver[i]);
-                    // 将该边的距离设置为x的距离加1
-                    d[ver[i]] = d[x] + 1;
-                    // 如果该边的终点是终点t，返回true
+//                    qDebug() << "add" << x << " " << ver[i];
+                    (xtm + ytm).debug();
+                    q.push({ver[i], xtm + ytm});
+                    v[y] = 1;
                     if (ver[i] == t)
                         return 1;
                 }
@@ -170,40 +177,31 @@ namespace DataStructureAlgorithm
         // 如果遍历完所有的边，没有找到终点t，返回false
         return 0;
     }
-    int Dinic::dinic(int x, int flow)
+
+    void EK::update()
     {
-        // 如果已经到达汇点，则返回已经流过的水量
-        if (x == t)
-            return flow;
-        // 剩余水量
-        int rest = flow, k;
-        // 遍历x的边
-        for (int i = head[x]; i && rest; i = nxt[i])
+        int x = t;
+//        qDebug() << "update";
+        while(x != s)
         {
-            // 如果该边的容量大于0，且源点为x，汇点为ver[i]
-            if (edge[i] && d[ver[i]] == d[x] + 1)
-            {
-                // 调用dinic函数，计算从ver[i]到汇点的最大流
-                k = dinic(ver[i], min(rest, edge[i]));
-                // 如果最大流为0，则将源点d[ver[i]]置为0
-                if (!k)
-                    d[ver[i]] = 0;
-                // 更新边的容量
-                edge[i] -= k;
-                edge[i ^ 1] += k;
-                // 更新剩余水量
-                rest -= k;
-            }
+//            qDebug() << x;
+            int i = pre[x];
+            edge[i] -= incf[t];
+            edge[i^1] += incf[t];
+            edge_tm[i] = edge_tm[i] - incf_tm[t];
+            edge_tm[i^1] = edge_tm[i] + incf_tm[t];
+            x = ver[i^1];
         }
-        // 返回已经流过的水量
-        return flow - rest;
+        maxflow += incf[t];
     }
-    void Dinic::add(int x, int y, int z)
+    void EK::add(int x, int y, int z, int rev, multiCourseTime tm)
     {
 //        qDebug() << x <<  " " << y << " " << z;
         ver[++tot] = y;
         edge[tot] = z;
         nxt[tot] = head[x];
+        reverse[tot] = rev;
+        edge_tm[tot] = tm;
         head[x] = tot;
     }
 }

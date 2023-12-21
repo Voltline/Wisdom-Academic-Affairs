@@ -10,6 +10,7 @@ namespace CourseSystem
         // qDebug() << cp.beg << " " << cp.last << endl;
         this->start_class_id = (day - 1) * MAX_CLASS_IN_DAY + start_class;
         this->end_class_id = (day - 1) * MAX_CLASS_IN_DAY + end_class;
+        reverse = 1;
     }
 
     CourseTime::CourseTime(int day, int start_class, int end_class)
@@ -19,6 +20,7 @@ namespace CourseSystem
         this->end_class = end_class;
         this->start_class_id = (day - 1) * MAX_CLASS_IN_DAY + start_class;
         this->end_class_id = (day - 1) * MAX_CLASS_IN_DAY + end_class;
+        reverse = 1;
     }
     CourseTime::CourseTime(int time_id_1, int time_id_2)
     {
@@ -27,6 +29,7 @@ namespace CourseSystem
         end_class = time_id_2 % MAX_CLASS_IN_DAY;
         start_class_id = time_id_1;
         end_class_id = time_id_2;
+        reverse = 1;
     }
     CourseTime::CourseTime(const CourseTime &course_time)
     {
@@ -35,6 +38,7 @@ namespace CourseSystem
         this->end_class = course_time.end_class;
         this->start_class_id = course_time.start_class_id;
         this->end_class_id = course_time.end_class_id;
+        this->reverse = course_time.reverse;
     }
     CourseTime& CourseTime::operator=(const CourseTime &course_time)
     {
@@ -43,6 +47,7 @@ namespace CourseSystem
         this->end_class = course_time.end_class;
         this->start_class_id = course_time.start_class_id;
         this->end_class_id = course_time.end_class_id;
+        this->reverse = course_time.reverse;
         return *this;
     }
     const int &CourseTime::get_day() const
@@ -75,4 +80,10 @@ namespace CourseSystem
             return false;
         return true;
     }
+
+    bool operator==(const CourseTime &c1, const CourseTime &c2)
+    {
+        return c1.get_day() == c2.get_day() && c1.get_start_class() == c2.get_start_class() && c1.get_end_class() == c2.get_end_class();
+    }
+
 } // namespace CourseSystem

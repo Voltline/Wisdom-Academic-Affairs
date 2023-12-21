@@ -34,9 +34,10 @@ namespace CourseSystem
         friend bool judge_conflict(CourseTime &c1, CourseTime &c2);
         void debug()
         {
-            qDebug() << "day:" << day << "start_class:" << start_class << "end_class:" << end_class << "start_class_id:" << start_class_id << "end_class_id:" << end_class_id;
+            qDebug() << "day:" << day << "start_class:" << start_class << "end_class:" << end_class << "start_class_id:" << start_class_id << "end_class_id:" << end_class_id << "re" << reverse;
         }
 
+        int reverse; //用于网络流流量计算
     private:
         int day;                          // 星期几
         int start_class, end_class;       // 开始和结束课时
@@ -44,6 +45,8 @@ namespace CourseSystem
     };
     // 判断两个课时是否冲突
     bool judge_conflict(CourseTime &c1, CourseTime &c2);
+    bool operator==(const CourseTime &c1,const CourseTime &c2);
+
 } // namespace CourseSystem
 
 #endif // COURSESYSTEM_COURSETIME_H

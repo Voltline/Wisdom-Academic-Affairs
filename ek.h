@@ -1,5 +1,5 @@
-#ifndef DINIC_H
-#define DINIC_H
+#ifndef EK_H
+#define EK_H
 #include "CourseSystem.h"
 #include "stdAddition.h"
 #include <vector>
@@ -18,14 +18,16 @@ using std::vector;
 
 namespace DataStructureAlgorithm
 {
-    class Dinic
+    class EK
     {
     public:
-        Dinic(vector<Course> courses);
+        EK(vector<Course> courses);
         int sov();
         void debug();
     private:
-        vector<int> head, ver, nxt, edge, d;
+        vector<int> head, ver, nxt, edge, d, reverse;
+        vector<int> v, incf, pre;
+        vector<multiCourseTime> edge_tm, incf_tm;
         vector<Course> courses;
         vector<TeacherCourse> teacherCourses;
         unordered_map<QString, int> course_id;
@@ -36,9 +38,9 @@ namespace DataStructureAlgorithm
         const static int INF = 10000;
         void build();
         bool bfs();
-        int dinic(int x, int flow);
-        void add(int x, int y, int z);
+        void update();
+        void add(int x, int y, int z, int rev = 0, multiCourseTime tm = multiCourseTime());
     };
 }
 
-#endif DINIC_H
+#endif EK_H
