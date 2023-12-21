@@ -71,6 +71,7 @@ namespace DataStructureAlgorithm
             {
                 for (auto to_teachercourse : to.get_teacherCourse())
                 {
+                    if(from_teachercourse.get_times() ^ to_teachercourse.get_times()) continue;
                     add(course_id[from.get_course_basic_ID() + from_teachercourse.get_spid()] ^ 1,
                         course_id[to.get_course_basic_ID() + to_teachercourse.get_spid()],
                         INF);

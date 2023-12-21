@@ -46,19 +46,19 @@ int main(int argc, char *argv[])
 //        l.display();
 //    }
     //测试ClassSystem
-    /*
-    std::map<QString, CourseSystem::Course> courses;
-    for(auto courseinfo : ans)
-    {
-        courses[courseinfo.course_basic_ID].push_teacherCourse(courseinfo);
-    }
-    vector<CourseSystem::Course> vec;
-    for(auto [x,y]: courses)
-    {
-        vec.push_back(y);
-        y.debug();
-    }
-    */
+
+//    std::map<QString, CourseSystem::Course> courses;
+//    for(auto courseinfo : ans)
+//    {
+//        courses[courseinfo.course_basic_ID].push_teacherCourse(courseinfo);
+//    }
+//    vector<CourseSystem::Course> vec;
+//    for(auto [x,y]: courses)
+//    {
+//        vec.push_back(y);
+//        y.debug();
+//    }
+
     //测试topsort
     //推荐课程
 //    auto topans = TopSort(vec, {15, 15, 15, 15, 20, 20, 32, 32}, 10).sov();
@@ -78,8 +78,8 @@ int main(int argc, char *argv[])
     */
 
     //测试dinic
-    /*
-    qDebug() << Dinic(vec).sov();
-    */
+
+//    qDebug() << Dinic(vec).sov();
+
     return a.exec();
 }
