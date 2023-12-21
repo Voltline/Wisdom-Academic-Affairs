@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
     */
     //测试数据库
 //    auto ans{ cdb.get_one_class_info("COMS0031132077") };
-//    auto ans{cdb.get_class_from_dept("测试数据1")};
+    auto ans{cdb.get_class_from_dept("测试数据4")};
 //    auto ans{cdb.get_class_from_dept("计算机科学与技术学院")};
 //    for (const auto& l : ans)
 //    {
@@ -47,17 +47,17 @@ int main(int argc, char *argv[])
 //    }
     //测试ClassSystem
 
-//    std::map<QString, CourseSystem::Course> courses;
-//    for(auto courseinfo : ans)
-//    {
-//        courses[courseinfo.course_basic_ID].push_teacherCourse(courseinfo);
-//    }
-//    vector<CourseSystem::Course> vec;
-//    for(auto [x,y]: courses)
-//    {
-//        vec.push_back(y);
-//        y.debug();
-//    }
+    std::map<QString, CourseSystem::Course> courses;
+    for(auto courseinfo : ans)
+    {
+        courses[courseinfo.course_basic_ID].push_teacherCourse(courseinfo);
+    }
+    vector<CourseSystem::Course> vec;
+    for(auto [x,y]: courses)
+    {
+        vec.push_back(y);
+        y.debug();
+    }
 
     //测试topsort
     //推荐课程
@@ -78,8 +78,9 @@ int main(int argc, char *argv[])
     */
 
     //测试dinic
-
-//    qDebug() << Dinic(vec).sov();
+    auto d = Dinic(vec);
+    qDebug() << d.sov();
+    d.debug();
 
     return a.exec();
 }

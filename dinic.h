@@ -21,7 +21,7 @@ namespace DataStructureAlgorithm
     public:
         Dinic(vector<Course> courses);
         int sov();
-
+        void debug();
     private:
         vector<int> head, ver, nxt, edge, d;
         vector<Course> courses;

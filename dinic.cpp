@@ -42,6 +42,22 @@ namespace DataStructureAlgorithm
         }
         return maxflow;
     }
+
+    void Dinic::debug()
+    {
+        for(auto [x,y] : course_id)
+        {
+            qDebug() << x << " " << y;
+        }
+//        for(int x = s; x <= t; ++x)
+//        {
+//            for(int i = head[x]; i; i = nxt[i])
+//            {
+//                int y =ver[i];
+//                qDebug() << x << " " << y << " " << edge[i];
+//            }
+//        }
+    }
     void Dinic::build()
     {
         // s是源点 是1 t是汇点 是maxn
@@ -71,7 +87,7 @@ namespace DataStructureAlgorithm
             {
                 for (auto to_teachercourse : to.get_teacherCourse())
                 {
-                    if(from_teachercourse.get_times() ^ to_teachercourse.get_times()) continue;
+                    if(!(from_teachercourse.get_times() ^ to_teachercourse.get_times())) continue;
                     add(course_id[from.get_course_basic_ID() + from_teachercourse.get_spid()] ^ 1,
                         course_id[to.get_course_basic_ID() + to_teachercourse.get_spid()],
                         INF);
@@ -176,7 +192,7 @@ namespace DataStructureAlgorithm
     }
     void Dinic::add(int x, int y, int z)
     {
-        //         qDebug() << x <<  " " << y << " " << z;
+                 qDebug() << x <<  " " << y << " " << z;
         ver[++tot] = y;
         edge[tot] = z;
         nxt[tot] = head[x];
