@@ -156,7 +156,28 @@ namespace DataStructureAlgorithm
         vector<Course> vec;
         for (auto x : now)
             vec.push_back(courses[x - 1]);
-        vec.push_back(courses[new_course_id - 1]);
+        auto new_course = courses[new_course_id - 1];
+        int c_cnt = 0;
+        for(auto x : vec)
+        {
+            bool judge = 0;
+            for(auto tx : x.get_teacherCourse())
+            {
+                for(auto ty : new_course.get_teacherCourse())
+                {
+                    if(!(tx.get_times()^ty.get_times()))
+                    {
+                        judge = 1;
+                        break;
+                    }
+                }
+                if(judge) break;
+            }
+            c_cnt += judge;
+        }
+        if(c_cnt >= 2)
+            return false;
+        vec.push_back(new_course);
         double credit = 0;
         for (auto x : vec)
             credit += x.get_credit();
