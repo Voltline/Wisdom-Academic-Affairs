@@ -776,7 +776,7 @@
 background-color: rgb(52, 61, 120);</string>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page_1">
       <property name="geometry">
@@ -920,7 +920,7 @@ border-radius: 25px;</string>
            <double>0.500000000000000</double>
           </property>
           <property name="value">
-           <double>20.000000000000000</double>
+           <double>12.000000000000000</double>
           </property>
          </widget>
         </item>
@@ -987,7 +987,7 @@ border-radius: 25px;</string>
            <double>0.500000000000000</double>
           </property>
           <property name="value">
-           <double>20.000000000000000</double>
+           <double>18.000000000000000</double>
           </property>
          </widget>
         </item>
